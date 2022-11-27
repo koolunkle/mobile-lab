@@ -14,11 +14,12 @@
     <!-- Back Button -->
     <string name="toast_back_pressed">Press the Back button once more to exit</string>
 
-    <!-- fragmemt profile -->
+    <!-- Fragment Profile -->
     <string name="description">내 정보를 변경합니다.</string>
     <string name="require_a">닉네임은 공백없이 입력해주세요.</string>
     <string name="require_b">기호는 _(Under Bar)만 사용 가능합니다.</string>
     <string name="require_c">우측 이미지를 터치하면 이미지변경이 가능합니다.</string>
+    <string name="edt_nickname">&#160;&#160;NickName</string>
     <string name="choice_of_taste">선호하는 장르를 선택해 주세요.</string>
     <string name="genre_01">드라마</string>
     <string name="genre_02">판타지</string>
