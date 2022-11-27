@@ -16,6 +16,7 @@
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@null"
             android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
         <ImageButton
@@ -23,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:contentDescription="@null"
             android:src="@android:drawable/ic_menu_save" />
 
     </RelativeLayout>
@@ -32,38 +34,39 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_profile_info"
+            style="@style/Text00"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:text="@string/description" />
+
+        <TextView
+            android:id="@+id/tv_profile_nickname"
+            style="@style/Text01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_profile_info"
+            android:layout_marginBottom="3dp"
+            android:text="@string/require_a" />
+
+        <TextView
+            android:id="@+id/tv_profile_sign"
+            style="@style/Text01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@id/tv_profile_nickname"
+            android:layout_marginBottom="3dp"
+            android:text="@string/require_b" />
 
-            <TextView
-                style="@style/Text00"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="22dp"
-                android:text="@string/description" />
-
-            <TextView
-                style="@style/Text01"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:text="@string/require_a" />
-
-            <TextView
-                style="@style/Text01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:text="@string/require_b" />
-
-            <TextView
-                style="@style/Text01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/require_c" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_profile_image"
+            style="@style/Text01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_profile_sign"
+            android:text="@string/require_c" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_profile"
@@ -86,7 +89,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/border_under"
-        android:hint="  NickName" />
+        android:hint="@string/edt_nickname"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -107,13 +112,13 @@
                 style="@style/Text01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/choice_of_taste"/>
+                android:text="@string/choice_of_taste" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre01"
@@ -155,8 +160,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre05"
@@ -198,8 +203,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre09"
@@ -227,14 +232,13 @@
                     android:background="@drawable/genre_button"
                     android:text="@string/genre_11" />
 
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre12"
@@ -267,8 +271,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre15"
@@ -301,8 +305,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre18"
@@ -344,8 +348,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre22"
@@ -378,8 +382,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre25"
@@ -407,13 +411,13 @@
                     android:background="@drawable/genre_button"
                     android:text="@string/genre_27" />
 
-
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_genre28"
@@ -424,8 +428,9 @@
                     android:text="@string/genre_28" />
 
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
