@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:context=".view.activity.user.PersonalActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            style="@style/PageIntroduce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/my_review" />
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            style="@style/NickName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_rv_count"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/nickname" />
+        <TextView
+            android:id="@+id/tv_rv_count"
+            style="@style/SubText_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_profile"
+            android:layout_marginBottom="10dp"
+            android:text="@string/rv_count" />
+
+        <TextView
+            android:id="@+id/tv_rv_count_no"
+            style="@style/SubText_B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tv_rv_count"
+            android:layout_alignBottom="@+id/iv_profile"
+            android:layout_marginBottom="10dp"
+            android:text="@string/rv_count_no" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_nav_profile_24"
+            app:civ_border_color="#9A9A9A"
+            app:civ_border_overlay="true"
+            app:civ_border_width="3dp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>
