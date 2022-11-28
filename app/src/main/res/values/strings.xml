@@ -37,7 +37,25 @@
     <string name="tv_login">Login</string>
 
     <!-- Activity SignUp -->
-    <string name="tv_sign_up">Sign Up</string>
+    <string name="tv_title">Sign Up</string>
+    <string name="txt_profile">Upload Image</string>
+    <string name="tv_nickname">Nickname</string>
+    <string name="tv_password">Password</string>
+
+    <string name="et_nickname">Input Nickname</string>
+    <string name="edt_password">Input Password</string>
+
+    <string name="btn_signup">Sign Up</string>
+
+    <!-- Activity Login -->
+    <string name="txt_title">Login</string>
+
+    <string name="bttn_login">Login</string>
+
+    <!-- Fragment List -->
+    <string name="tv_cinema_title">Title</string>
+    <string name="tv_cinema_director">Director</string>
+    <string name="tv_cinema_actor">Actor</string>
 
     <!-- Activity Personal -->
     <string name="my_review">나의 리뷰</string>

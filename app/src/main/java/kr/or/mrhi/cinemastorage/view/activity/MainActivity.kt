@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
-import kr.or.mrhi.cinemastorage.view.adapter.PagerAdapter
+import kr.or.mrhi.cinemastorage.view.adapter.MainAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setViewPager() {
         binding.viewpager.apply {
-            adapter = PagerAdapter(this@MainActivity)
+            adapter = MainAdapter(this@MainActivity)
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
@@ -46,12 +46,8 @@ class MainActivity : AppCompatActivity() {
                     binding.viewpager.currentItem = LIST_FRAGMENT
                     true
                 }
-                R.id.nav_review -> {
-                    binding.viewpager.currentItem = REVIEW_FRAGMENT
-                    true
-                }
                 else -> {
-                    binding.viewpager.currentItem = PROFILE_FRAGMENT
+                    binding.viewpager.currentItem = REVIEW_FRAGMENT
                     true
                 }
             }
@@ -75,7 +71,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val LIST_FRAGMENT = 0
         const val REVIEW_FRAGMENT = 1
-        const val PROFILE_FRAGMENT = 2
     }
 
 }
