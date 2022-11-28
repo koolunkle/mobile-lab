@@ -41,7 +41,7 @@
 
         <TextView
             android:id="@+id/tv_profile_info"
-            style="@style/PageIntroduce"
+            style="@style/text_25_bold_darkgray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
@@ -49,7 +49,7 @@
 
         <TextView
             android:id="@+id/tv_profile_nickname"
-            style="@style/SubText_A"
+            style="@style/text_15_bold_lightgray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/tv_profile_sign"
-            style="@style/SubText_A"
+            style="@style/text_15_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/tv_profile_image"
-            style="@style/SubText_A"
+            style="@style/text_15_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
