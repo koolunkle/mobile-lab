@@ -79,4 +79,9 @@
 
     <string name="bttn_login">Login</string>
 
+    <!-- Fragment List -->
+    <string name="tv_cinema_title">Title</string>
+    <string name="tv_cinema_director">Director</string>
+    <string name="tv_cinema_actor">Actor</string>
+
 </resources>
