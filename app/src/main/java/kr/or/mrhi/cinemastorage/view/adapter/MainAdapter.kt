@@ -7,7 +7,7 @@ import kr.or.mrhi.cinemastorage.view.fragment.ListFragment
 import kr.or.mrhi.cinemastorage.view.fragment.ProfileFragment
 import kr.or.mrhi.cinemastorage.view.fragment.ReviewFragment
 
-class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+class MainAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     private val fragmentList = arrayListOf(ListFragment(), ReviewFragment(), ProfileFragment())
 

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
-import kr.or.mrhi.cinemastorage.view.adapter.PagerAdapter
+import kr.or.mrhi.cinemastorage.view.adapter.MainAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setViewPager() {
         binding.viewpager.apply {
-            adapter = PagerAdapter(this@MainActivity)
+            adapter = MainAdapter(this@MainActivity)
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
