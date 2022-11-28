@@ -15,7 +15,7 @@
         android:layout_margin="10dp">
 
         <TextView
-            style="@style/PageIntroduce"
+            style="@style/text_25_bold_darkgray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -31,7 +31,7 @@
             android:hint="@string/nickname" />
         <TextView
             android:id="@+id/tv_rv_count"
-            style="@style/SubText_B"
+            style="@style/text_18_middlegray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/iv_profile"
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/tv_rv_count_no"
-            style="@style/SubText_B"
+            style="@style/text_18_middlegray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/tv_rv_count"
