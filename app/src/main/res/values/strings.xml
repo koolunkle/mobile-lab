@@ -74,4 +74,9 @@
 
     <string name="btn_signup">Sign Up</string>
 
+    <!-- Activity Login -->
+    <string name="txt_title">Login</string>
+
+    <string name="bttn_login">Login</string>
+
 </resources>
