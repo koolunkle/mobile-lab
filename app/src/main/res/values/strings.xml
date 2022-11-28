@@ -50,4 +50,38 @@
     <string name="genre_27">영화음악</string>
     <string name="genre_28">영화패러디포스터</string>
 
+    <!-- Activity Intro -->
+    <string name="btn_login">Login</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="btn_later">See you later</string>
+
+    <string name="dialog_title">Exit</string>
+    <string name="dialog_message">Are you sure you want to exit?</string>
+    <string name="dialog_positive">Confirm</string>
+    <string name="dialog_negative">Cancel</string>
+
+    <!-- Activity Login -->
+    <string name="tv_login">Login</string>
+
+    <!-- Activity SignUp -->
+    <string name="tv_title">Sign Up</string>
+    <string name="txt_profile">Upload Image</string>
+    <string name="tv_nickname">Nickname</string>
+    <string name="tv_password">Password</string>
+
+    <string name="et_nickname">Input Nickname</string>
+    <string name="edt_password">Input Password</string>
+
+    <string name="btn_signup">Sign Up</string>
+
+    <!-- Activity Login -->
+    <string name="txt_title">Login</string>
+
+    <string name="bttn_login">Login</string>
+
+    <!-- Fragment List -->
+    <string name="tv_cinema_title">Title</string>
+    <string name="tv_cinema_director">Director</string>
+    <string name="tv_cinema_actor">Actor</string>
+
 </resources>
