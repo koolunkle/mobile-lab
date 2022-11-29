@@ -19,8 +19,6 @@
     <string name="require_a">닉네임은 공백없이 입력해주세요.</string>
     <string name="require_b">기호는 _(Under Bar)만 사용 가능합니다.</string>
     <string name="require_c">이미지를 터치하면 이미지변경이 가능합니다.</string>
-    <string name="edt_nickname">NickName</string>
-    <string name="edt_pw">Password</string>
     <string name="button_save">완료</string>
 
     <!-- Activity Intro -->
@@ -59,7 +57,6 @@
 
     <!-- Activity Personal -->
     <string name="my_review">나의 리뷰</string>
-    <string name="nickname">nickname</string>
     <string name="rv_count">내가 작성한 리뷰 :</string>
     <string name="rv_count_no">100</string>
 
@@ -68,4 +65,8 @@
     <string name="user_review_date">2022.12.05</string>
     <string name="user_review_comment">출생의 비밀이라는 식상한 소재가 등장하지만 역동적인 무협 장면들에 속이 시원해진다.</string>
 
+    <!-- Drawer navigtion -->
+    <string name="item_myreview">내 리뷰</string>
+    <string name="item_profile_update">프로필 수정</string>
+    <string name="tv_sir">님</string>
 </resources>

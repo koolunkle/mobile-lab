@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/tv_rv_count"
             android:layout_marginBottom="10dp"
-            android:hint="@string/nickname" />
+            android:text="@string/tv_nickname" />
         <TextView
             android:id="@+id/tv_rv_count"
             style="@style/text_18_middlegray"
