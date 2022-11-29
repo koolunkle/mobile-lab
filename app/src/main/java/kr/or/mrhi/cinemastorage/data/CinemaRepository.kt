@@ -42,4 +42,50 @@ object CinemaRepository {
             }
         })
     }
+
+    fun getTopRatedCinema(
+        page: Int = 1,
+        onSuccess: (cinema: List<Cinema>) -> Unit,
+        onError: () -> Unit
+    ) {
+        api.getTopRatedCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
+            override fun onResponse(
+                call: Call<GetCinemaResponse>,
+                response: Response<GetCinemaResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) onSuccess.invoke(responseBody.results)
+                    else onError.invoke()
+                } else onError.invoke()
+            }
+
+            override fun onFailure(call: Call<GetCinemaResponse>, t: Throwable) {
+                onError.invoke()
+            }
+        })
+    }
+
+    fun getUpcomingCinema(
+        page: Int = 1,
+        onSuccess: (cinema: List<Cinema>) -> Unit,
+        onError: () -> Unit
+    ) {
+        api.getUpcomingCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
+            override fun onResponse(
+                call: Call<GetCinemaResponse>,
+                response: Response<GetCinemaResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) onSuccess.invoke(responseBody.results)
+                    else onError.invoke()
+                } else onError.invoke()
+            }
+
+            override fun onFailure(call: Call<GetCinemaResponse>, t: Throwable) {
+                onError.invoke()
+            }
+        })
+    }
 }

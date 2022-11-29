@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kr.or.mrhi.cinemastorage.data.Cinema
 import kr.or.mrhi.cinemastorage.data.CinemaRepository
 import kr.or.mrhi.cinemastorage.databinding.FragmentListBinding
@@ -19,9 +20,13 @@ class ListFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val cinemaList = ArrayList<Cinema>()
+    private val cinemaList = listOf<Cinema>()
 
-    private lateinit var listAdapter: ListAdapter
+    private val popularAdapter = ListAdapter(cinemaList)
+
+    private val topRatedAdapter = ListAdapter(cinemaList)
+
+    private val upcomingAdapter = ListAdapter(cinemaList)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +36,11 @@ class ListFragment : Fragment() {
 
         binding.apply {
             getPopularCinema()
-            setRecyclerView()
+            getTopRatedCinema()
+            getUpcomingCinema()
+            setRecyclerView(recyclerViewPopular, popularAdapter)
+            setRecyclerView(recyclerViewTopRated, topRatedAdapter)
+            setRecyclerView(recyclerViewUpcoming, upcomingAdapter)
         }
         return binding.root
     }
@@ -41,7 +50,31 @@ class ListFragment : Fragment() {
     }
 
     private fun onPopularCinemaFetched(cinema: List<Cinema>) {
-        listAdapter.updateCinema(cinema)
+        popularAdapter.updateCinema(cinema)
+        Log.d("ListFragment", "Cinema : $cinema")
+    }
+
+    private fun getTopRatedCinema() {
+        CinemaRepository.getTopRatedCinema(
+            onSuccess = ::onTopRatedCinemaFetched,
+            onError = ::onError
+        )
+    }
+
+    private fun onTopRatedCinemaFetched(cinema: List<Cinema>) {
+        topRatedAdapter.updateCinema(cinema)
+        Log.d("ListFragment", "Cinema : $cinema")
+    }
+
+    private fun getUpcomingCinema() {
+        CinemaRepository.getUpcomingCinema(
+            onSuccess = ::onUpcomingCinemaFetched,
+            onError = ::onError
+        )
+    }
+
+    private fun onUpcomingCinemaFetched(cinema: List<Cinema>) {
+        upcomingAdapter.updateCinema(cinema)
         Log.d("ListFragment", "Cinema : $cinema")
     }
 
@@ -51,9 +84,8 @@ class ListFragment : Fragment() {
         ).show()
     }
 
-    private fun setRecyclerView() {
-        listAdapter = ListAdapter(cinemaList)
-        binding.recyclerView.apply {
+    private fun setRecyclerView(recyclerView: RecyclerView, listAdapter: ListAdapter) {
+        recyclerView.apply {
             adapter = listAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
