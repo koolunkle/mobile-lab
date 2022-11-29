@@ -1,6 +1,6 @@
-package kr.or.mrhi.cinemastorage.data
+package kr.or.mrhi.cinemastorage.data.cinema
 
-import kr.or.mrhi.cinemastorage.network.API
+import kr.or.mrhi.cinemastorage.network.CinemaAPI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object CinemaRepository {
 
-    private val api: API
+    private val cinemaApi: CinemaAPI
 
     init {
         val retrofit = Retrofit.Builder()
@@ -17,7 +17,7 @@ object CinemaRepository {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        api = retrofit.create(API::class.java)
+        cinemaApi = retrofit.create(CinemaAPI::class.java)
     }
 
     fun getPopularCinema(
@@ -25,7 +25,7 @@ object CinemaRepository {
         onSuccess: (cinema: List<Cinema>) -> Unit,
         onError: () -> Unit
     ) {
-        api.getPopularCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
+        cinemaApi.getPopularCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
             override fun onResponse(
                 call: Call<GetCinemaResponse>,
                 response: Response<GetCinemaResponse>
@@ -48,7 +48,7 @@ object CinemaRepository {
         onSuccess: (cinema: List<Cinema>) -> Unit,
         onError: () -> Unit
     ) {
-        api.getTopRatedCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
+        cinemaApi.getTopRatedCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
             override fun onResponse(
                 call: Call<GetCinemaResponse>,
                 response: Response<GetCinemaResponse>
@@ -71,7 +71,7 @@ object CinemaRepository {
         onSuccess: (cinema: List<Cinema>) -> Unit,
         onError: () -> Unit
     ) {
-        api.getUpcomingCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
+        cinemaApi.getUpcomingCinema(page = page).enqueue(object : Callback<GetCinemaResponse> {
             override fun onResponse(
                 call: Call<GetCinemaResponse>,
                 response: Response<GetCinemaResponse>

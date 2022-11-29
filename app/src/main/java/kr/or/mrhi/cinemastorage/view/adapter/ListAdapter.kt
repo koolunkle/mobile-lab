@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kr.or.mrhi.cinemastorage.data.Cinema
+import kr.or.mrhi.cinemastorage.data.cinema.Cinema
 import kr.or.mrhi.cinemastorage.databinding.AdapterListBinding
 
 class ListAdapter(private var cinemaList: List<Cinema>) :

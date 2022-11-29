@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kr.or.mrhi.cinemastorage.data.Cinema
-import kr.or.mrhi.cinemastorage.data.CinemaRepository
+import kr.or.mrhi.cinemastorage.data.cinema.Cinema
+import kr.or.mrhi.cinemastorage.data.cinema.CinemaRepository
 import kr.or.mrhi.cinemastorage.databinding.FragmentListBinding
 import kr.or.mrhi.cinemastorage.view.adapter.ListAdapter
 

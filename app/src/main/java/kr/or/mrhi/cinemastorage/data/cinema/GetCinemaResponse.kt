@@ -1,4 +1,4 @@
-package kr.or.mrhi.cinemastorage.data
+package kr.or.mrhi.cinemastorage.data.cinema
 
 import com.google.gson.annotations.SerializedName
 
