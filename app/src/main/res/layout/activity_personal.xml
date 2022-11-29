@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5dp"
     tools:context=".view.activity.user.PersonalActivity">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:padding="15dp"
+        android:background="@color/wedgewood_blue">
 
         <TextView
             style="@style/text_25_bold_darkgray"
@@ -24,11 +24,11 @@
         <TextView
             android:id="@+id/tv_nickname"
             style="@style/NickName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/tv_rv_count"
             android:layout_marginBottom="10dp"
-            android:hint="@string/nickname" />
+            android:text="@string/tv_nickname" />
         <TextView
             android:id="@+id/tv_rv_count"
             style="@style/text_18_middlegray"
@@ -63,6 +63,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp">

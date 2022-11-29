@@ -107,7 +107,7 @@
             android:layout_alignStart="@+id/view_back00"
             android:layout_alignBottom="@+id/view_back00"
             android:layout_marginStart="12dp"
-            android:hint="@string/edt_nickname"
+            android:hint="@string/tv_nickname"
             android:importantForAutofill="no"
             android:inputType="text" />
 
@@ -145,7 +145,7 @@
             android:layout_alignStart="@+id/view_back01"
             android:layout_alignBottom="@+id/view_back01"
             android:layout_marginStart="12dp"
-            android:hint="@string/edt_pw"
+            android:hint="@string/tv_password"
             android:importantForAutofill="no"
             android:inputType="text" />
 

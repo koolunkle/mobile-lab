@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navi_review"
+        android:icon="@drawable/ic_fastfood"
+        android:title="@string/item_myreview" />
+
+    <item
+        android:id="@+id/navi_profileupdate"
+        android:icon="@drawable/ic_fastfood"
+        android:title="@string/item_profile_update" />
+</menu>
