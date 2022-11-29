@@ -1,3 +1,13 @@
 package kr.or.mrhi.cinemastorage.data
 
-data class Cinema(val thumbnail: Int, val title: String, val director: String, val actor: String)
+import com.google.gson.annotations.SerializedName
+
+data class Cinema(
+    @SerializedName("id") val id: Long,
+
+    @SerializedName("title") val title: String,
+
+    @SerializedName("overview") val overview: String,
+
+    @SerializedName("poster_path") val posterPath: String
+)
