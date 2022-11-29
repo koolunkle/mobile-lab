@@ -1,9 +1,10 @@
-package kr.or.mrhi.cinemastorage.view.activity
+package kr.or.mrhi.cinemastorage.view.activity.account
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kr.or.mrhi.cinemastorage.databinding.ActivityLoginBinding
+import kr.or.mrhi.cinemastorage.view.activity.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 

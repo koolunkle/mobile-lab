@@ -16,21 +16,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ReviewActivity"
+            android:name=".view.activity.ReviewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.SignUpActivity"
+            android:name=".view.activity.account.SignUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".view.activity.account.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

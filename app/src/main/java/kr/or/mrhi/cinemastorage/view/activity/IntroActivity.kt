@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.databinding.ActivityIntroBinding
+import kr.or.mrhi.cinemastorage.view.activity.account.LoginActivity
+import kr.or.mrhi.cinemastorage.view.activity.account.SignUpActivity
 import kr.or.mrhi.cinemastorage.view.adapter.IntroAdapter
 
 class IntroActivity : AppCompatActivity() {
