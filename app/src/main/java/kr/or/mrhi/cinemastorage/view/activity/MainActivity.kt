@@ -3,10 +3,12 @@ package kr.or.mrhi.cinemastorage.view.activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.viewpager2.widget.ViewPager2
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
 import kr.or.mrhi.cinemastorage.view.adapter.MainAdapter
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,7 +62,11 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(
                 this, resources.getString(R.string.toast_back_pressed), Toast.LENGTH_SHORT
             ).show()
-        } else finish()
+        } else {
+            ActivityCompat.finishAffinity(this)
+            System.runFinalization()
+            exitProcess(0)
+        }
     }
 
     override fun onDestroy() {

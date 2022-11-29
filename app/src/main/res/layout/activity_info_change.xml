@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="10dp"
+    tools:context=".view.activity.user.InfoChangeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_back_clear"
+            android:contentDescription="@null"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+        <ImageButton
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_back_clear"
+            android:contentDescription="@string/button_save"
+            android:src="@android:drawable/ic_menu_save" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_profile_info"
+            style="@style/text_25_bold_darkgray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:text="@string/description" />
+
+        <TextView
+            android:id="@+id/tv_profile_nickname"
+            style="@style/text_15_bold_lightgray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/require_a" />
+
+        <TextView
+            android:id="@+id/tv_profile_sign"
+            style="@style/text_15_bold_lightgray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/require_b" />
+
+        <TextView
+            android:id="@+id/tv_profile_image"
+            style="@style/text_15_bold_lightgray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/require_c" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_nav_profile_24"
+            app:civ_border_color="#9A9A9A"
+            app:civ_border_overlay="true"
+            app:civ_border_width="3dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view_back00"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_under" />
+
+        <EditText
+            android:id="@+id/edt_nickname"
+            style="@style/NickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/view_back00"
+            android:layout_alignBottom="@+id/view_back00"
+            android:layout_marginStart="12dp"
+            android:hint="@string/edt_nickname"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/btn_delete_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/view_back00"
+            android:layout_alignBottom="@+id/view_back00"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_back_grey"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view_back01"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_under" />
+
+        <EditText
+            android:id="@+id/edt_pw"
+            style="@style/NickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/view_back01"
+            android:layout_alignBottom="@+id/view_back01"
+            android:layout_marginStart="12dp"
+            android:hint="@string/edt_pw"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/btn_delete_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/view_back01"
+            android:layout_alignBottom="@+id/view_back01"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_back_grey"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+    </RelativeLayout>
+
+</LinearLayout>

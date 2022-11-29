@@ -14,41 +14,14 @@
     <!-- Back Button -->
     <string name="toast_back_pressed">Press the Back button once more to exit</string>
 
-    <!-- Fragment Profile -->
+    <!-- Activity Info Change -->
     <string name="description">내 정보를 변경합니다.</string>
     <string name="require_a">닉네임은 공백없이 입력해주세요.</string>
     <string name="require_b">기호는 _(Under Bar)만 사용 가능합니다.</string>
-    <string name="require_c">우측 이미지를 터치하면 이미지변경이 가능합니다.</string>
-    <string name="edt_nickname">&#160;&#160;NickName</string>
-    <string name="choice_of_taste">선호하는 장르를 선택해 주세요.</string>
-    <string name="genre_01">드라마</string>
-    <string name="genre_02">판타지</string>
-    <string name="genre_03">서부</string>
-    <string name="genre_04">공포</string>
-    <string name="genre_05">로맨스</string>
-    <string name="genre_06">모험</string>
-    <string name="genre_07">스릴러</string>
-    <string name="genre_08">느와르</string>
-    <string name="genre_09">컬트</string>
-    <string name="genre_10">다큐멘터리</string>
-    <string name="genre_11">코미디</string>
-    <string name="genre_12">가족</string>
-    <string name="genre_13">미스터리</string>
-    <string name="genre_14">전쟁</string>
-    <string name="genre_15">애니메이션</string>
-    <string name="genre_16">범죄</string>
-    <string name="genre_17">뮤지컬</string>
-    <string name="genre_18">SF</string>
-    <string name="genre_19">액션</string>
-    <string name="genre_20">무협</string>
-    <string name="genre_21">에로</string>
-    <string name="genre_22">서스펜스</string>
-    <string name="genre_23">서사</string>
-    <string name="genre_24">블랙코미디</string>
-    <string name="genre_25">실험</string>
-    <string name="genre_26">영화카툰</string>
-    <string name="genre_27">영화음악</string>
-    <string name="genre_28">영화패러디포스터</string>
+    <string name="require_c">이미지를 터치하면 이미지변경이 가능합니다.</string>
+    <string name="edt_nickname">NickName</string>
+    <string name="edt_pw">Password</string>
+    <string name="button_save">완료</string>
 
     <!-- Activity Intro -->
     <string name="btn_login">Login</string>
@@ -83,5 +56,16 @@
     <string name="tv_cinema_title">Title</string>
     <string name="tv_cinema_director">Director</string>
     <string name="tv_cinema_actor">Actor</string>
+
+    <!-- Activity Personal -->
+    <string name="my_review">나의 리뷰</string>
+    <string name="nickname">nickname</string>
+    <string name="rv_count">내가 작성한 리뷰 :</string>
+    <string name="rv_count_no">100</string>
+
+    <!-- Item Review User -->
+    <string name="user_review_title">쿵푸팬더2</string>
+    <string name="user_review_date">2022.12.05</string>
+    <string name="user_review_comment">출생의 비밀이라는 식상한 소재가 등장하지만 역동적인 무협 장면들에 속이 시원해진다.</string>
 
 </resources>
