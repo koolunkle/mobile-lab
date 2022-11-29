@@ -7,18 +7,21 @@ import com.bumptech.glide.Glide
 import kr.or.mrhi.cinemastorage.data.Cinema
 import kr.or.mrhi.cinemastorage.databinding.AdapterListBinding
 
-class ListAdapter(private val cinemaList: ArrayList<Cinema>) :
+class ListAdapter(private var cinemaList: List<Cinema>) :
     RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: AdapterListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Cinema) {
-            Glide.with(itemView.context).load(data.thumbnail).into(binding.ivThumbnail)
-            binding.tvTitle.text = data.title
-            binding.tvDirector.text = data.director
-            binding.tvActor.text = data.actor
+            Glide.with(itemView.context).load("https://image.tmdb.org/t/p/w342${data.posterPath}")
+                .into(binding.ivPoster)
         }
+    }
+
+    fun updateCinema(cinemaList: List<Cinema>) {
+        this.cinemaList = cinemaList
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -31,5 +34,4 @@ class ListAdapter(private val cinemaList: ArrayList<Cinema>) :
     }
 
     override fun getItemCount(): Int = cinemaList.size
-
 }
