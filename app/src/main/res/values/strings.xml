@@ -69,4 +69,8 @@
     <string name="item_myreview">내 리뷰</string>
     <string name="item_profile_update">프로필 수정</string>
     <string name="tv_sir">님</string>
+
+    <!-- Menu Review Search -->
+    <string name="menu_search">search</string>
+
 </resources>
