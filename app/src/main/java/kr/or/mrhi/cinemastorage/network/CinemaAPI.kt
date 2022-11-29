@@ -1,11 +1,11 @@
 package kr.or.mrhi.cinemastorage.network
 
-import kr.or.mrhi.cinemastorage.data.GetCinemaResponse
+import kr.or.mrhi.cinemastorage.data.cinema.GetCinemaResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface API {
+interface CinemaAPI {
 
     @GET("movie/popular")
     fun getPopularCinema(
