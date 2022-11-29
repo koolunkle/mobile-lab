@@ -36,6 +36,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="text_20_bold_808080">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#808080</item>
+    </style>
+
     <style name="text_30_bold_808080">
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
