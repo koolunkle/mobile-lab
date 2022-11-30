@@ -1,7 +1,9 @@
 package kr.or.mrhi.cinemastorage.view.activity
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -18,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
     private var backPressedTime: Long = 0
 
+    private lateinit var toggle: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -26,7 +30,24 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             setViewPager()
             navigationSelected()
+            setDrawerLayout()
         }
+    }
+
+    private fun setDrawerLayout() {
+        toggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            R.string.drawer_open,
+            R.string.drawer_close
+        )
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.syncState()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) return true
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setViewPager() {
