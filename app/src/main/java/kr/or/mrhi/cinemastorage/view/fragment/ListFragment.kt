@@ -37,9 +37,10 @@ class ListFragment : Fragment() {
 
     private val upcomingAdapter = ListAdapter(cinemaList) { cinema -> showCinemaDetail(cinema) }
 
+    private var position = 0
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListBinding.inflate(inflater, container, false)
 
@@ -77,8 +78,7 @@ class ListFragment : Fragment() {
 
     private fun getTopRatedCinema() {
         CinemaRepository.getTopRatedCinema(
-            onSuccess = ::onTopRatedCinemaFetched,
-            onError = ::onError
+            onSuccess = ::onTopRatedCinemaFetched, onError = ::onError
         )
     }
 
@@ -89,8 +89,7 @@ class ListFragment : Fragment() {
 
     private fun getUpcomingCinema() {
         CinemaRepository.getUpcomingCinema(
-            onSuccess = ::onUpcomingCinemaFetched,
-            onError = ::onError
+            onSuccess = ::onUpcomingCinemaFetched, onError = ::onError
         )
     }
 
@@ -121,6 +120,29 @@ class ListFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.videoView.apply {
+            if (!isPlaying) {
+                seekTo(position)
+                start()
+            }
+        }
+    }
+
+    override fun onPause() {
+        binding.videoView.apply {
+            position = currentPosition
+            pause()
+        }
+        super.onPause()
+    }
+
+    override fun onStop() {
+        binding.videoView.apply { if (isPlaying) stopPlayback() }
+        super.onStop()
     }
 
     override fun onDestroy() {
