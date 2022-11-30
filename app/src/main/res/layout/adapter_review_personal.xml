@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:maxHeight="120dp"
-        tools:srcCompat="@drawable/img_poster" />
+        tools:srcCompat="@drawable/poster_cinema" />
 
     <TextView
         android:id="@+id/tv_title"
