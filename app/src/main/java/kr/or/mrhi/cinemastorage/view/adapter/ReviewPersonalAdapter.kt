@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.or.mrhi.cinemastorage.data.Review
-import kr.or.mrhi.cinemastorage.databinding.ItemReviewUserBinding
+import kr.or.mrhi.cinemastorage.databinding.AdapterReviewPersonalBinding
 
-class UserReviewAdapter(private val reviewList: ArrayList<Review>) :
-    RecyclerView.Adapter<UserReviewAdapter.ReviewViewHolder>() {
-    inner class ReviewViewHolder(private val binding: ItemReviewUserBinding) :
+class ReviewPersonalAdapter(private val reviewList: ArrayList<Review>) :
+    RecyclerView.Adapter<ReviewPersonalAdapter.ReviewViewHolder>() {
+    inner class ReviewViewHolder(private val binding: AdapterReviewPersonalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Review) {
@@ -30,7 +30,7 @@ class UserReviewAdapter(private val reviewList: ArrayList<Review>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
         val binding =
-            ItemReviewUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            AdapterReviewPersonalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ReviewViewHolder(binding)
     }
 
