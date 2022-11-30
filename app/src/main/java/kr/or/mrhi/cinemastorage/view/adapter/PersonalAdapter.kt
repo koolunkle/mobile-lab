@@ -1,4 +1,4 @@
-package kr.or.mrhi.cinemastorage.view.activity.user
+package kr.or.mrhi.cinemastorage.view.adapter
 
 import android.os.Bundle
 import android.util.Log
@@ -6,14 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityPersonalBinding
-import kr.or.mrhi.cinemastorage.view.adapter.ReviewPersonalAdapter
 
-class PersonalActivity : AppCompatActivity() {
+class PersonalAdapter : AppCompatActivity() {
 
     private var _binding: ActivityPersonalBinding? = null
     private val binding get() = _binding!!
@@ -26,10 +24,16 @@ class PersonalActivity : AppCompatActivity() {
         _binding = ActivityPersonalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /*get the profile image from FirebaseStorage*/
+/*     val userDAO = UserDAO()
+
+       val imgRef = userDAO.storage!!.reference.child("images/${}")
+
         Glide.with(applicationContext)
             .load(user.profileImage)
             .into(binding.ivProfile)
-        binding.tvNickname.text = user.nickname
+        binding.tvNickname.text = user.nickname*/
+
         /*해당 유저가 작성한 리뷰 갯수만 가져와야 함
          binding.tvRvCountNo.text = reviewList?.size.toString()*/
 
@@ -61,7 +65,6 @@ class PersonalActivity : AppCompatActivity() {
                 reviewList?.clear()
 
                 /*firebase에서 review데이터 검색해서 불러오기*/
-
 
                 reviewPersonalAdapter.notifyDataSetChanged()
                 return true
