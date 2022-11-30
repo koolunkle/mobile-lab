@@ -7,15 +7,20 @@ import com.bumptech.glide.Glide
 import kr.or.mrhi.cinemastorage.data.cinema.Cinema
 import kr.or.mrhi.cinemastorage.databinding.AdapterListBinding
 
-class ListAdapter(private var cinemaList: List<Cinema>) :
+class ListAdapter(
+    private var cinemaList: List<Cinema>,
+    private val onCinemaClick: (cinema: Cinema) -> Unit
+) :
     RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: AdapterListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Cinema) {
-            Glide.with(itemView.context).load("https://image.tmdb.org/t/p/w342${data.posterPath}")
+            Glide.with(itemView.context).load("https://image.tmdb.org/t/p/w342${data.poster}")
                 .into(binding.ivPoster)
+
+            itemView.setOnClickListener { onCinemaClick.invoke(data) }
         }
     }
 

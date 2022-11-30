@@ -1,5 +1,6 @@
 package kr.or.mrhi.cinemastorage.view.fragment
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.or.mrhi.cinemastorage.data.cinema.Cinema
 import kr.or.mrhi.cinemastorage.data.cinema.CinemaRepository
 import kr.or.mrhi.cinemastorage.databinding.FragmentListBinding
+import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity
+import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_BACKDROP
+import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_OVERVIEW
+import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_POSTER
+import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_RATING
+import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_RELEASE_DATE
+import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_TITLE
 import kr.or.mrhi.cinemastorage.view.adapter.ListAdapter
 
 class ListFragment : Fragment() {
@@ -23,11 +31,11 @@ class ListFragment : Fragment() {
 
     private val cinemaList = listOf<Cinema>()
 
-    private val popularAdapter = ListAdapter(cinemaList)
+    private val popularAdapter = ListAdapter(cinemaList) { cinema -> showCinemaDetail(cinema) }
 
-    private val topRatedAdapter = ListAdapter(cinemaList)
+    private val topRatedAdapter = ListAdapter(cinemaList) { cinema -> showCinemaDetail(cinema) }
 
-    private val upcomingAdapter = ListAdapter(cinemaList)
+    private val upcomingAdapter = ListAdapter(cinemaList) { cinema -> showCinemaDetail(cinema) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +53,17 @@ class ListFragment : Fragment() {
             setVideoView()
         }
         return binding.root
+    }
+
+    private fun showCinemaDetail(cinema: Cinema) {
+        val intent = Intent(requireContext(), ListDetailActivity::class.java)
+        intent.putExtra(MOVIE_BACKDROP, cinema.backdrop)
+        intent.putExtra(MOVIE_POSTER, cinema.poster)
+        intent.putExtra(MOVIE_TITLE, cinema.title)
+        intent.putExtra(MOVIE_RELEASE_DATE, cinema.release)
+        intent.putExtra(MOVIE_RATING, cinema.rating)
+        intent.putExtra(MOVIE_OVERVIEW, cinema.overview)
+        startActivity(intent)
     }
 
     private fun getPopularCinema() {

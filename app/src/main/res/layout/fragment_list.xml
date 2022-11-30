@@ -1,131 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none"
     tools:context=".view.fragment.ListFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <VideoView
+            android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="300dp"
+            android:layout_marginVertical="10dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_popular_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <VideoView
-                android:id="@+id/videoView"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginVertical="10dp"
-                app:layout_constraintBottom_toTopOf="@id/tv_popular_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_popular_title"
+            style="@style/text_30_bold_808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_popular_title"
+            app:layout_constraintBottom_toTopOf="@id/tv_popular_subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/videoView" />
 
-            <TextView
-                android:id="@+id/tv_popular_title"
-                style="@style/text_30_bold_808080"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_popular_title"
-                app:layout_constraintBottom_toTopOf="@id/tv_popular_subtitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/videoView" />
+        <TextView
+            android:id="@+id/tv_popular_subtitle"
+            style="@style/text_20_bold_808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_popular_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_popular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_popular_title" />
 
-            <TextView
-                android:id="@+id/tv_popular_subtitle"
-                style="@style/text_20_bold_808080"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_popular_subtitle"
-                app:layout_constraintBottom_toTopOf="@id/recyclerView_popular"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_popular_title" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_popular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="true"
+            app:layout_constraintBottom_toTopOf="@id/tv_top_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_popular_subtitle" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_popular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="true"
-                app:layout_constraintBottom_toTopOf="@id/tv_top_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_popular_subtitle" />
+        <TextView
+            android:id="@+id/tv_top_title"
+            style="@style/text_30_bold_808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_top_title"
+            app:layout_constraintBottom_toTopOf="@id/tv_top_subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_popular" />
 
-            <TextView
-                android:id="@+id/tv_top_title"
-                style="@style/text_30_bold_808080"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_top_title"
-                app:layout_constraintBottom_toTopOf="@id/tv_top_subtitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerView_popular" />
+        <TextView
+            android:id="@+id/tv_top_subtitle"
+            style="@style/text_20_bold_808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_top_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_top_rated"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_top_title" />
 
-            <TextView
-                android:id="@+id/tv_top_subtitle"
-                style="@style/text_20_bold_808080"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_top_subtitle"
-                app:layout_constraintBottom_toTopOf="@id/recyclerView_top_rated"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_top_title" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_top_rated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="true"
+            app:layout_constraintBottom_toTopOf="@id/tv_upcoming_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_top_subtitle" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_top_rated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="true"
-                app:layout_constraintBottom_toTopOf="@id/tv_upcoming_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_top_subtitle" />
+        <TextView
+            android:id="@+id/tv_upcoming_title"
+            style="@style/text_30_bold_808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/tv_upcoming_title"
+            app:layout_constraintBottom_toTopOf="@id/tv_upcoming_subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_top_rated" />
 
-            <TextView
-                android:id="@+id/tv_upcoming_title"
-                style="@style/text_30_bold_808080"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/tv_upcoming_title"
-                app:layout_constraintBottom_toTopOf="@id/tv_upcoming_subtitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerView_top_rated" />
+        <TextView
+            android:id="@+id/tv_upcoming_subtitle"
+            style="@style/text_20_bold_808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_upcoming_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_upcoming"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_upcoming_title" />
 
-            <TextView
-                android:id="@+id/tv_upcoming_subtitle"
-                style="@style/text_20_bold_808080"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_upcoming_subtitle"
-                app:layout_constraintBottom_toTopOf="@id/recyclerView_upcoming"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_upcoming_title" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_upcoming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_upcoming_subtitle" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_upcoming"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_upcoming_subtitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
