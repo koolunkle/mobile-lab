@@ -1,5 +1,6 @@
 package kr.or.mrhi.cinemastorage.view.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class ListFragment : Fragment() {
             setRecyclerView(recyclerViewPopular, popularAdapter)
             setRecyclerView(recyclerViewTopRated, topRatedAdapter)
             setRecyclerView(recyclerViewUpcoming, upcomingAdapter)
+            setVideoView()
         }
         return binding.root
     }
@@ -82,6 +84,15 @@ class ListFragment : Fragment() {
         Toast.makeText(
             requireContext(), "Please check your internet connection", Toast.LENGTH_SHORT
         ).show()
+    }
+
+    private fun setVideoView() {
+        binding.videoView.apply {
+            setVideoURI(Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"))
+            requestFocus()
+            setOnPreparedListener { start() }
+            setOnCompletionListener { start() }
+        }
     }
 
     private fun setRecyclerView(recyclerView: RecyclerView, listAdapter: ListAdapter) {

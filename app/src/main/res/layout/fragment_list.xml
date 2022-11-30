@@ -16,7 +16,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginVertical="10dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_popular_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_popular_title"
@@ -26,7 +36,7 @@
                 android:text="@string/tv_popular_title"
                 app:layout_constraintBottom_toTopOf="@id/tv_popular_subtitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/videoView" />
 
             <TextView
                 android:id="@+id/tv_popular_subtitle"
@@ -44,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:clipToPadding="false"
+                android:nestedScrollingEnabled="true"
                 app:layout_constraintBottom_toTopOf="@id/tv_top_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:clipToPadding="false"
+                android:nestedScrollingEnabled="true"
                 app:layout_constraintBottom_toTopOf="@id/tv_upcoming_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:clipToPadding="false"
+                android:nestedScrollingEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_upcoming_subtitle" />
