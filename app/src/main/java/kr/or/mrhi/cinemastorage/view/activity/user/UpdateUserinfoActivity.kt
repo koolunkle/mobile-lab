@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kr.or.mrhi.cinemastorage.R
 
-class InfoChangeActivity : AppCompatActivity() {
+class UpdateUserinfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_info_change)
+        setContentView(R.layout.activity_userinfo_update)
     }
 }

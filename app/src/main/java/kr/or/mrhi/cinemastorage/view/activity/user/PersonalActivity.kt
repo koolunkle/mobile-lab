@@ -11,15 +11,34 @@ import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityPersonalBinding
-import kr.or.mrhi.cinemastorage.view.adapter.UserReviewAdapter
+import kr.or.mrhi.cinemastorage.view.adapter.ReviewPersonalAdapter
 
 class PersonalActivity : AppCompatActivity() {
 
     private var _binding: ActivityPersonalBinding? = null
     private val binding get() = _binding!!
-    private lateinit var userReviewAdapter: UserReviewAdapter
+    private lateinit var reviewPersonalAdapter: ReviewPersonalAdapter
     private var reviewList: ArrayList<Review>? = arrayListOf()
     private lateinit var user: User
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        _binding = ActivityPersonalBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        Glide.with(applicationContext)
+            .load(user.profileImage)
+            .into(binding.ivProfile)
+        binding.tvNickname.text = user.nickname
+        /*해당 유저가 작성한 리뷰 갯수만 가져와야 함
+         binding.tvRvCountNo.text = reviewList?.size.toString()*/
+
+        reviewPersonalAdapter = ReviewPersonalAdapter(reviewList as ArrayList<Review>)
+        binding.recyclerView.apply {
+            adapter = reviewPersonalAdapter
+            setHasFixedSize(true)
+        }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -44,29 +63,10 @@ class PersonalActivity : AppCompatActivity() {
                 /*firebase에서 review데이터 검색해서 불러오기*/
 
 
-                userReviewAdapter.notifyDataSetChanged()
+                reviewPersonalAdapter.notifyDataSetChanged()
                 return true
             }
         })
         return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        _binding = ActivityPersonalBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        Glide.with(applicationContext)
-            .load(user.profileImage)
-            .into(binding.ivProfile)
-        binding.tvNickname.text = user.nickname
-        /*해당 유저가 작성한 리뷰 갯수만 가져와야 함
-         binding.tvRvCountNo.text = reviewList?.size.toString()*/
-
-        userReviewAdapter = UserReviewAdapter(reviewList as ArrayList<Review>)
-        binding.recyclerView.apply {
-            adapter = userReviewAdapter
-            setHasFixedSize(true)
-        }
     }
 }
