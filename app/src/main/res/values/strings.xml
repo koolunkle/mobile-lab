@@ -4,12 +4,10 @@
     <!-- Bottom Navigation -->
     <string name="nav_list">List</string>
     <string name="nav_review">Review</string>
-    <string name="nav_profile">Profile</string>
 
     <!-- Fragment -->
     <string name="tv_list">List</string>
     <string name="tv_review">Review</string>
-    <string name="tv_profile">Profile</string>
 
     <!-- Back Button -->
     <string name="toast_back_pressed">Press the Back button once more to exit</string>
@@ -60,6 +58,8 @@
     <string name="tv_upcoming_title">Upcoming</string>
     <string name="tv_upcoming_subtitle">Stayed updated with the latest cinema</string>
 
+    <string name="btn_review">Create Review</string>
+
     <!-- Activity Personal -->
     <string name="my_review">나의 리뷰</string>
     <string name="rv_count">내가 작성한 리뷰 :</string>
@@ -70,12 +70,11 @@
     <string name="user_review_date">2022.12.05</string>
     <string name="user_review_comment">출생의 비밀이라는 식상한 소재가 등장하지만 역동적인 무협 장면들에 속이 시원해진다.</string>
 
-    <!-- Drawer navigtion -->
+    <!-- Drawer navigation -->
     <string name="item_myreview">내 리뷰</string>
     <string name="item_profile_update">프로필 수정</string>
     <string name="tv_sir">님</string>
 
     <!-- Menu Review Search -->
     <string name="menu_search">search</string>
-
 </resources>
