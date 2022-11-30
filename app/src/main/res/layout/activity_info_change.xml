@@ -101,7 +101,7 @@
 
         <EditText
             android:id="@+id/edt_nickname"
-            style="@style/NickName"
+            style="@style/text_25_bold_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/view_back00"
@@ -139,7 +139,7 @@
 
         <EditText
             android:id="@+id/edt_pw"
-            style="@style/NickName"
+            style="@style/text_25_bold_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/view_back01"
