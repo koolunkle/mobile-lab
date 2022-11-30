@@ -1,5 +1,6 @@
 package kr.or.mrhi.cinemastorage.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -9,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.viewpager2.widget.ViewPager2
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
+import kr.or.mrhi.cinemastorage.view.activity.user.UpdateUserinfoActivity
 import kr.or.mrhi.cinemastorage.view.adapter.MainAdapter
 import kotlin.system.exitProcess
 
@@ -29,17 +31,29 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             setViewPager()
-            navigationSelected()
+            setBottomNavigationSelected()
             setDrawerLayout()
+            setDrawerNavigationSelected()
+        }
+    }
+
+    private fun setDrawerNavigationSelected() {
+        binding.navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_review -> startActivity(
+                    Intent(this, ReviewActivity::class.java)
+                )
+                R.id.nav_profile_update -> startActivity(
+                    Intent(this, UpdateUserinfoActivity::class.java)
+                )
+            }
+            true
         }
     }
 
     private fun setDrawerLayout() {
         toggle = ActionBarDrawerToggle(
-            this,
-            binding.drawerLayout,
-            R.string.drawer_open,
-            R.string.drawer_close
+            this, binding.drawerLayout, R.string.drawer_open, R.string.drawer_close
         )
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.syncState()
@@ -62,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigationSelected() {
+    private fun setBottomNavigationSelected() {
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_list -> {
