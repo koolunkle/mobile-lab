@@ -77,4 +77,8 @@
 
     <!-- Menu Review Search -->
     <string name="menu_search">search</string>
+
+    <!-- Activity Main -->
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
 </resources>
