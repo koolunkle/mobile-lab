@@ -1,4 +1,4 @@
-package kr.or.mrhi.cinemastorage.view.adapter
+package kr.or.mrhi.cinemastorage.view.activity.user
 
 import android.os.Bundle
 import android.util.Log
@@ -6,12 +6,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import kr.or.mrhi.cinemastorage.R
+import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityPersonalBinding
+import kr.or.mrhi.cinemastorage.view.adapter.ReviewPersonalAdapter
 
-class PersonalAdapter : AppCompatActivity() {
+class PersonalActivity : AppCompatActivity() {
 
     private var _binding: ActivityPersonalBinding? = null
     private val binding get() = _binding!!
@@ -25,14 +28,20 @@ class PersonalAdapter : AppCompatActivity() {
         setContentView(binding.root)
 
         /*get the profile image from FirebaseStorage*/
-/*     val userDAO = UserDAO()
+        val userDAO = UserDAO()
+        val imageName = user.key
+        val imgRef = userDAO.storage!!.reference.child("images/${imageName}.jpg")
 
-       val imgRef = userDAO.storage!!.reference.child("images/${}")
-
-        Glide.with(applicationContext)
-            .load(user.profileImage)
-            .into(binding.ivProfile)
-        binding.tvNickname.text = user.nickname*/
+        /*binding image*/
+        imgRef.downloadUrl.addOnCompleteListener {
+            if(it.isSuccessful){
+                Glide.with(applicationContext)
+                    .load(it.result)
+                    .into(binding.ivProfile)
+            }
+        }
+        /*binding nickname*/
+        binding.tvNickname.text = user.nickname
 
         /*해당 유저가 작성한 리뷰 갯수만 가져와야 함
          binding.tvRvCountNo.text = reviewList?.size.toString()*/
@@ -66,7 +75,7 @@ class PersonalAdapter : AppCompatActivity() {
 
                 /*firebase에서 review데이터 검색해서 불러오기*/
 
-                reviewPersonalAdapter.notifyDataSetChanged()
+//                reviewPersonalAdapter.notifyDataSetChanged()
                 return true
             }
         })
