@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.viewpager2.widget.ViewPager2
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
+import kr.or.mrhi.cinemastorage.view.activity.user.PersonalActivity
 import kr.or.mrhi.cinemastorage.view.activity.user.UpdateUserinfoActivity
 import kr.or.mrhi.cinemastorage.view.adapter.MainAdapter
 import kotlin.system.exitProcess
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_review -> startActivity(
-                    Intent(this, ReviewActivity::class.java)
+                    Intent(this, PersonalActivity::class.java)
                 )
                 R.id.nav_profile_update -> startActivity(
                     Intent(this, UpdateUserinfoActivity::class.java)
