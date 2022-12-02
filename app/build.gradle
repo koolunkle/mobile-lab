@@ -51,7 +51,7 @@ dependencies {
     //Lottie
     implementation 'com.airbnb.android:lottie:5.2.0'
 
-    //Circle ImageView
+    //CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //DotsIndicator
@@ -69,4 +69,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
     implementation 'com.firebaseui:firebase-ui-storage:8.0.0'
+
+    //SimpleRatingBar
+    implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 }
