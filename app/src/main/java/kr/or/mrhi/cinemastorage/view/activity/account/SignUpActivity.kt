@@ -38,18 +38,14 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun uploadExternalContentUri() {
         binding.btnSignUp.setOnClickListener {
-            val nickname = binding.edtNickname.text.toString()
-            val password = binding.edtPassword.text.toString()
+            val nickname = binding.edtNickname.text
+            val password = binding.edtPassword.text
 
             val userDAO = UserDAO()
             val userKey = userDAO.databaseReference?.push()?.key
-            val user = User(userKey.toString(), nickname, password)
+            val user = User(userKey.toString(), nickname.toString(), password.toString())
 
-            val imageReference =
-                userDAO.storage?.reference?.child("images/${userKey}.jpg")
-            val file = Uri.fromFile(File(filePath))
-
-            if (binding.ivProfile.drawable == null || binding.edtNickname.text.isEmpty() || binding.edtPassword.text.isEmpty()) {
+            if (binding.ivProfile.drawable == null || nickname.isBlank() || password.isBlank()) {
                 setToast("Please enter your profile picture, nickname, and password at all")
                 return@setOnClickListener
             } else {
@@ -58,16 +54,20 @@ class SignUpActivity : AppCompatActivity() {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val child: Iterator<DataSnapshot> = snapshot.children.iterator()
                         while (child.hasNext()) {
-                            if (nickname == child.next().key) {
+                            if (nickname.toString() == child.next().key) {
                                 setToast("Duplicate nickname")
                                 userDAO.databaseReference!!.removeEventListener(this)
                                 return
                             }
                         }
+                        val imageReference =
+                            userDAO.storage?.reference?.child("images/${userKey}.jpg")
+                        val file = Uri.fromFile(File(filePath))
+
                         imageReference?.putFile(file)?.apply {
                             addOnSuccessListener {
-                                userDAO.databaseReference?.child(nickname)?.setValue(user)
-                                    .apply {
+                                userDAO.databaseReference?.child(nickname.toString())
+                                    ?.setValue(user).apply {
                                         addOnSuccessListener { setToast("Success to insert data") }
                                         addOnFailureListener { setToast("Failed to insert data") }
                                     }
