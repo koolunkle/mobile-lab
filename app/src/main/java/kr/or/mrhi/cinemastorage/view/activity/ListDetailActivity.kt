@@ -26,7 +26,13 @@ class ListDetailActivity : AppCompatActivity() {
 
     private fun moveToReview() {
         binding.btnReview.setOnClickListener {
-            val intent = Intent(this, ReviewActivity::class.java)
+            val extras = intent.extras
+            val intent = Intent(this, WriteActivity::class.java)
+            intent.putExtra(MOVIE_BACKDROP, extras?.getString(MOVIE_BACKDROP))
+            intent.putExtra(MOVIE_POSTER, extras?.getString(MOVIE_POSTER))
+            intent.putExtra(MOVIE_TITLE, extras?.getString(MOVIE_TITLE))
+            intent.putExtra(MOVIE_RELEASE_DATE, extras?.getString(MOVIE_RELEASE_DATE))
+            intent.putExtra(MOVIE_RATING, extras?.getFloat(MOVIE_RATING))
             startActivity(intent)
         }
     }
