@@ -81,4 +81,16 @@
     <!-- Activity Main -->
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
+
+    <!-- Fragment Review -->
+    <string name="txt_review">Review</string>
+
+    <!-- Activity Write -->
+    <string name="tv_write_title">Review Title</string>
+    <string name="tv_write_comment">Review Comment</string>
+
+    <string name="et_write_title">Please create a review title</string>
+    <string name="et_write_comment">Please write a review</string>
+
+    <string name="btn_write_review">Create Review</string>
 </resources>
