@@ -12,13 +12,13 @@ import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityPersonalBinding
-import kr.or.mrhi.cinemastorage.view.adapter.ReviewPersonalAdapter
+import kr.or.mrhi.cinemastorage.view.adapter.ReviewAdapter
 
 class PersonalActivity : AppCompatActivity() {
 
     private var _binding: ActivityPersonalBinding? = null
     private val binding get() = _binding!!
-    private lateinit var reviewPersonalAdapter: ReviewPersonalAdapter
+    private lateinit var reviewAdapter: ReviewAdapter
     private var reviewList: ArrayList<Review>? = arrayListOf()
     private lateinit var user: User
 
@@ -46,9 +46,9 @@ class PersonalActivity : AppCompatActivity() {
         /*해당 유저가 작성한 리뷰 갯수만 가져와야 함
          binding.tvRvCountNo.text = reviewList?.size.toString()*/
 
-        reviewPersonalAdapter = ReviewPersonalAdapter(reviewList as ArrayList<Review>)
+        reviewAdapter = ReviewAdapter(reviewList as ArrayList<Review>)
         binding.recyclerView.apply {
-            adapter = reviewPersonalAdapter
+            adapter = reviewAdapter
             setHasFixedSize(true)
         }
     }
