@@ -46,7 +46,7 @@ class SignUpActivity : AppCompatActivity() {
             val user = User(userKey.toString(), nickname.toString(), password.toString())
 
             if (binding.ivProfile.drawable == null || nickname.isBlank() || password.isBlank()) {
-                setToast("Please enter your profile picture, nickname, and password at all")
+                setToast("Please enter your profile picture, nickname and password at all")
                 return@setOnClickListener
             } else {
                 userDAO.databaseReference?.addListenerForSingleValueEvent(object :
@@ -100,7 +100,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-        binding.ivProfile.setOnClickListener {
+        binding.tvProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             requestLauncher.launch(intent)
