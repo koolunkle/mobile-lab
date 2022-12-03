@@ -34,7 +34,7 @@
 
     <!-- Activity SignUp -->
     <string name="tv_title">Sign Up</string>
-    <string name="txt_profile">Upload Image</string>
+    <string name="txt_profile">Click here to upload the image</string>
     <string name="tv_nickname">Nickname</string>
     <string name="tv_password">Password</string>
 
