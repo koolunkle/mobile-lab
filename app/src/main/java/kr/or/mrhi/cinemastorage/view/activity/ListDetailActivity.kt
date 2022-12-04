@@ -9,13 +9,11 @@ import kr.or.mrhi.cinemastorage.databinding.ActivityListDetailBinding
 
 class ListDetailActivity : AppCompatActivity() {
 
-    private var _binding: ActivityListDetailBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityListDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityListDetailBinding.inflate(layoutInflater)
+        binding = ActivityListDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.apply {
@@ -45,26 +43,17 @@ class ListDetailActivity : AppCompatActivity() {
 
     private fun setCinemaDetail(extras: Bundle) {
         extras.getString(MOVIE_BACKDROP)?.let { backdrop ->
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w1280$backdrop")
-                .transform(CenterCrop())
-                .into(binding.ivBackdrop)
+            Glide.with(this).load("https://image.tmdb.org/t/p/w1280$backdrop")
+                .transform(CenterCrop()).into(binding.ivBackdrop)
         }
         extras.getString(MOVIE_POSTER)?.let { poster ->
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w342$poster")
-                .transform(CenterCrop())
+            Glide.with(this).load("https://image.tmdb.org/t/p/w342$poster").transform(CenterCrop())
                 .into(binding.ivPoster)
         }
         binding.tvTitle.text = extras.getString(MOVIE_TITLE, "")
         binding.tvReleaseDate.text = extras.getString(MOVIE_RELEASE_DATE, "")
         binding.ratingBar.rating = extras.getFloat(MOVIE_RATING, 0f) / 2
         binding.tvOverview.text = extras.getString(MOVIE_OVERVIEW, "")
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
     companion object {

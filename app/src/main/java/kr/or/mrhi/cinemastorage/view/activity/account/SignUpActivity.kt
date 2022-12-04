@@ -19,15 +19,13 @@ import java.io.File
 
 class SignUpActivity : AppCompatActivity() {
 
-    private var _binding: ActivitySignUpBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivitySignUpBinding
 
     private lateinit var filePath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivitySignUpBinding.inflate(layoutInflater)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.apply {
@@ -109,11 +107,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun setToast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
 }

@@ -16,15 +16,14 @@ import kr.or.mrhi.cinemastorage.view.adapter.ReviewAdapter
 
 class PersonalActivity : AppCompatActivity() {
 
-    private var _binding: ActivityPersonalBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityPersonalBinding
     private lateinit var reviewAdapter: ReviewAdapter
     private var reviewList: ArrayList<Review>? = arrayListOf()
     private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityPersonalBinding.inflate(layoutInflater)
+        binding = ActivityPersonalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         /*get the profile image from FirebaseStorage*/
@@ -34,10 +33,8 @@ class PersonalActivity : AppCompatActivity() {
 
         /*binding image*/
         imgRef.downloadUrl.addOnCompleteListener {
-            if(it.isSuccessful){
-                Glide.with(applicationContext)
-                    .load(it.result)
-                    .into(binding.ivProfile)
+            if (it.isSuccessful) {
+                Glide.with(applicationContext).load(it.result).into(binding.ivProfile)
             }
         }
         /*binding nickname*/

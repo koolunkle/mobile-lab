@@ -16,9 +16,7 @@ import kr.or.mrhi.cinemastorage.view.adapter.IntroAdapter
 
 class IntroActivity : AppCompatActivity() {
 
-    private var _binding: ActivityIntroBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityIntroBinding
 
     private var backPressedTime: Long = 0
 
@@ -26,7 +24,7 @@ class IntroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityIntroBinding.inflate(layoutInflater)
+        binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.apply {
@@ -96,11 +94,6 @@ class IntroActivity : AppCompatActivity() {
                 this, resources.getString(R.string.toast_back_pressed), Toast.LENGTH_SHORT
             ).show()
         } else finish()
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
     companion object {

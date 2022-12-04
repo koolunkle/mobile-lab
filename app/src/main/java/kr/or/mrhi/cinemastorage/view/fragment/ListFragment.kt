@@ -25,9 +25,7 @@ import kr.or.mrhi.cinemastorage.view.adapter.ListAdapter
 
 class ListFragment : Fragment() {
 
-    private var _binding: FragmentListBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentListBinding
 
     private val cinemaList = listOf<Cinema>()
 
@@ -42,7 +40,7 @@ class ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListBinding.inflate(inflater, container, false)
+        binding = FragmentListBinding.inflate(inflater, container, false)
 
         binding.apply {
             getPopularCinema()
@@ -143,11 +141,6 @@ class ListFragment : Fragment() {
     override fun onStop() {
         binding.videoView.apply { if (isPlaying) stopPlayback() }
         super.onStop()
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
 }

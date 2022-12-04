@@ -14,15 +14,13 @@ import kr.or.mrhi.cinemastorage.view.activity.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
-    private var _binding: ActivityLoginBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityLoginBinding
 
     private var isUser = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.apply {
@@ -64,11 +62,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setToast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
 }

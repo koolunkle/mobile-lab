@@ -16,19 +16,16 @@ import kr.or.mrhi.cinemastorage.view.adapter.ReviewAdapter
 
 class ReviewFragment : Fragment() {
 
-    private var _binding: FragmentReviewBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentReviewBinding
 
     private var reviewList = ArrayList<Review>()
 
     private lateinit var reviewAdapter: ReviewAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentReviewBinding.inflate(inflater, container, false)
+        binding = FragmentReviewBinding.inflate(inflater, container, false)
 
         binding.apply {
             getReviewList()
@@ -61,11 +58,6 @@ class ReviewFragment : Fragment() {
             adapter = reviewAdapter
             setHasFixedSize(true)
         }
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
 }
