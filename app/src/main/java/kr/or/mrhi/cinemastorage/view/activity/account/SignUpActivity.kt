@@ -64,7 +64,7 @@ class SignUpActivity : AppCompatActivity() {
 
                         imageReference?.putFile(file)?.apply {
                             addOnSuccessListener {
-                                userDAO.databaseReference?.child(nickname.toString())
+                                userDAO.databaseReference?.child(userKey.toString())
                                     ?.setValue(user).apply {
                                         addOnSuccessListener { setToast("Success to insert data") }
                                         addOnFailureListener { setToast("Failed to insert data") }
