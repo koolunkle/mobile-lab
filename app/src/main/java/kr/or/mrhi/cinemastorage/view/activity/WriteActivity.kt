@@ -5,8 +5,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.dao.ReviewDAO
+import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.Review
+import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityWriteBinding
 import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_BACKDROP
 import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_POSTER
@@ -18,34 +24,64 @@ import java.util.*
 
 class WriteActivity : AppCompatActivity() {
 
-    private var _binding: ActivityWriteBinding? = null
+    private lateinit var binding: ActivityWriteBinding
 
-    private val binding get() = _binding!!
+    private lateinit var posterPath: String
+
+    private lateinit var backdropPath: String
+
+    private var globalUser: User? = null
+
+    private var loginUser: User? = null
+
+    private var isUser = false
+
+    private var reviewer: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityWriteBinding.inflate(layoutInflater)
+        binding = ActivityWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.apply {
             setCinemaReview()
             setCinemaInfo()
+            setUserNickname()
         }
+    }
+
+    private fun setUserNickname() {
+        val userDAO = UserDAO()
+        userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (children in snapshot.children) {
+                    globalUser = children.getValue(User::class.java)!!
+                    if (globalUser!!.key == SharedPreferences.getToken(applicationContext)) {
+                        loginUser = User(globalUser?.key!!, globalUser?.nickname, globalUser?.password)
+                        isUser = true
+                    }
+                }
+                if (isUser) reviewer = loginUser?.nickname
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                setToast(error.message)
+            }
+        })
     }
 
     private fun setCinemaInfo() {
         val extras = intent.extras
         extras?.getString(MOVIE_BACKDROP)?.let { backdrop ->
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w1280$backdrop")
-                .transform(CenterCrop())
-                .into(binding.ivBackdrop)
+            Glide.with(this).load("https://image.tmdb.org/t/p/w1280$backdrop")
+                .transform(CenterCrop()).into(binding.ivBackdrop)
+            backdropPath = "https://image.tmdb.org/t/p/w1280$backdrop"
         }
         extras?.getString(MOVIE_POSTER)?.let { poster ->
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w342$poster")
-                .transform(CenterCrop())
+            Glide.with(this).load("https://image.tmdb.org/t/p/w342$poster").transform(CenterCrop())
                 .into(binding.ivPoster)
+            posterPath = "https://image.tmdb.org/t/p/w342$poster"
         }
         binding.tvCinemaTitle.text = extras?.getString(MOVIE_TITLE, "")
         binding.tvReleaseDate.text = extras?.getString(MOVIE_RELEASE_DATE, "")
@@ -61,9 +97,15 @@ class WriteActivity : AppCompatActivity() {
 
             val reviewDAO = ReviewDAO()
             val reviewKey = reviewDAO.databaseReference?.push()?.key
-            val review =
-                Review(title.toString(), date, comment.toString(), rating.toString())
-
+            val review = Review(
+                reviewer,
+                title.toString(),
+                date,
+                comment.toString(),
+                rating.toString(),
+                posterPath,
+                backdropPath
+            )
             if (title.isBlank() || comment.isBlank()) {
                 setToast("Please enter your title, image and comment at all")
                 return@setOnClickListener
@@ -84,11 +126,6 @@ class WriteActivity : AppCompatActivity() {
 
     private fun setToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 
 }
