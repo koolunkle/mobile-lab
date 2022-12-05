@@ -104,15 +104,16 @@
             style="@style/text_25_bold_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/view_back00"
-            android:layout_alignBottom="@+id/view_back00"
-            android:layout_marginStart="12dp"
+            android:layout_alignTop="@id/btn_clear_nickname"
+            android:layout_alignBottom="@id/btn_clear_nickname"
+            android:layout_marginStart="20dp"
+            android:background="@null"
             android:hint="@string/tv_nickname"
             android:importantForAutofill="no"
             android:inputType="text" />
 
         <ImageButton
-            android:id="@+id/btn_delete_id"
+            android:id="@+id/btn_clear_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/view_back00"
@@ -142,12 +143,13 @@
             style="@style/text_25_bold_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/view_back01"
-            android:layout_alignBottom="@+id/view_back01"
-            android:layout_marginStart="12dp"
+            android:layout_alignTop="@id/btn_delete_pw"
+            android:layout_alignBottom="@id/btn_delete_pw"
+            android:layout_marginStart="20dp"
+            android:background="@null"
             android:hint="@string/tv_password"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:inputType="textPassword" />
 
         <ImageButton
             android:id="@+id/btn_delete_pw"
