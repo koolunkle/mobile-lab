@@ -7,68 +7,73 @@
     android:orientation="vertical"
     tools:context=".view.activity.user.PersonalActivity">
 
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:background="@color/wedgewood_blue">
+        android:background="@color/wedgewood_blue"
+        android:padding="15dp">
 
         <TextView
+            android:id="@+id/tv_review"
             style="@style/text_25_bold_darkgray"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/my_review" />
+            android:text="@string/tv_my_review"
+            app:layout_constraintBottom_toTopOf="@id/tv_nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_nickname"
             style="@style/text_25_bold_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_rv_count"
-            android:layout_marginBottom="10dp"
-            android:text="@string/tv_nickname" />
+            app:layout_constraintBottom_toTopOf="@id/tv_review_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_review"
+            tools:text="@string/tv_nickname" />
+
         <TextView
-            android:id="@+id/tv_rv_count"
+            android:id="@+id/tv_review_count"
             style="@style/text_18_middlegray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/iv_profile"
-            android:layout_marginBottom="10dp"
-            android:text="@string/rv_count" />
+            android:text="@string/tv_review_count"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nickname" />
 
         <TextView
-            android:id="@+id/tv_rv_count_no"
+            android:id="@+id/tv_review_count_no"
             style="@style/text_18_middlegray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/tv_rv_count"
-            android:layout_alignBottom="@+id/iv_profile"
-            android:layout_marginBottom="10dp"
-            android:text="@string/rv_count_no" />
-
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_review_count"
+            app:layout_constraintStart_toEndOf="@id/tv_review_count"
+            app:layout_constraintTop_toTopOf="@id/tv_review_count"
+            tools:text="@string/tv_review_count_no" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profile"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_nav_profile_24"
             app:civ_border_color="#9A9A9A"
             app:civ_border_overlay="true"
-            app:civ_border_width="3dp" />
+            app:civ_border_width="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_nav_profile_24" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 
 </LinearLayout>

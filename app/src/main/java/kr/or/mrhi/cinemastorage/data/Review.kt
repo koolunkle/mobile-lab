@@ -1,6 +1,7 @@
 package kr.or.mrhi.cinemastorage.data
 
 data class Review(
+    val key: String? = null,
     val reviewer: String? = null,
     val title: String? = null,
     val date: String? = null,

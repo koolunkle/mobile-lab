@@ -8,12 +8,12 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.dao.ReviewDAO
 import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityWriteBinding
+import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_BACKDROP
 import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_POSTER
 import kr.or.mrhi.cinemastorage.view.activity.ListDetailActivity.Companion.MOVIE_RATING
@@ -57,12 +57,12 @@ class WriteActivity : AppCompatActivity() {
                 for (children in snapshot.children) {
                     globalUser = children.getValue(User::class.java)!!
                     if (globalUser!!.key == SharedPreferences.getToken(applicationContext)) {
-                        loginUser = User(globalUser?.key!!, globalUser?.nickname, globalUser?.password)
+                        loginUser =
+                            User(globalUser?.key!!, globalUser?.nickname, globalUser?.password)
                         isUser = true
                     }
                 }
                 if (isUser) reviewer = loginUser?.nickname
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -90,6 +90,7 @@ class WriteActivity : AppCompatActivity() {
 
     private fun setCinemaReview() {
         binding.btnWrite.setOnClickListener {
+            val key = SharedPreferences.getToken(applicationContext)
             val title = binding.etTitle.text
             val date = currentDate()
             val comment = binding.etComment.text
@@ -98,6 +99,7 @@ class WriteActivity : AppCompatActivity() {
             val reviewDAO = ReviewDAO()
             val reviewKey = reviewDAO.databaseReference?.push()?.key
             val review = Review(
+                key,
                 reviewer,
                 title.toString(),
                 date,

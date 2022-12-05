@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.databinding.AdapterReviewBinding
-import kr.or.mrhi.cinemastorage.view.activity.ReviewDetailActivity
+import kr.or.mrhi.cinemastorage.view.activity.review.ReviewDetailActivity
 
 class ReviewAdapter(private val reviewList: ArrayList<Review>) :
     RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {

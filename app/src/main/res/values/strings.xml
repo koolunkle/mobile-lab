@@ -1,18 +1,14 @@
 <resources>
     <string name="app_name">CinemaStorage</string>
 
-    <!-- Bottom Navigation -->
+    <!-- Menu Bottom Navigation -->
     <string name="nav_list">List</string>
     <string name="nav_review">Review</string>
-
-    <!-- Fragment -->
-    <string name="tv_list">List</string>
-    <string name="tv_review">Review</string>
 
     <!-- Back Button -->
     <string name="toast_back_pressed">Press the Back button once more to exit</string>
 
-    <!-- Activity Info Change -->
+    <!-- Activity User Info Update -->
     <string name="description">내 정보를 변경합니다.</string>
     <string name="require_a">닉네임은 공백없이 입력해주세요.</string>
     <string name="require_b">기호는 _(Under Bar)만 사용 가능합니다.</string>
@@ -32,8 +28,10 @@
     <!-- Activity Login -->
     <string name="tv_login">Login</string>
 
-    <!-- Activity SignUp -->
+    <!-- Activity SignUp / Login -->
     <string name="tv_title">Sign Up</string>
+    <string name="txt_title">Login</string>
+
     <string name="txt_profile">Click here to upload the image</string>
     <string name="tv_nickname">Nickname</string>
     <string name="tv_password">Password</string>
@@ -42,13 +40,9 @@
     <string name="edt_password">Input Password</string>
 
     <string name="btn_signup">Sign Up</string>
-
-    <!-- Activity Login -->
-    <string name="txt_title">Login</string>
-
     <string name="bttn_login">Login</string>
 
-    <!-- Fragment List -->
+    <!-- Fragment List / Activity List Detail -->
     <string name="tv_popular_title">Popular</string>
     <string name="tv_popular_subtitle">Most popular cinema</string>
 
@@ -61,20 +55,23 @@
     <string name="btn_review">Create Review</string>
 
     <!-- Activity Personal -->
-    <string name="my_review">나의 리뷰</string>
-    <string name="rv_count">내가 작성한 리뷰 :</string>
-    <string name="rv_count_no">100</string>
+    <string name="tv_my_review">나의 리뷰</string>
+    <string name="tv_review_count">내가 작성한 리뷰 :</string>
+    <string name="tv_review_count_no">0</string>
 
-    <!-- Item Review User -->
+    <!-- Adapter Review / Personal -->
     <string name="user_reviewer">작성자 : </string>
     <string name="user_reviewer_comment">쿵푸팬더</string>
     <string name="user_review_title">쿵푸팬더2</string>
     <string name="user_review_date">2022.12.05 00:00:00</string>
     <string name="user_review_comment">출생의 비밀이라는 식상한 소재가 등장하지만 역동적인 무협 장면들에 속이 시원해진다.</string>
 
-    <!-- Drawer navigation -->
+    <!-- Menu Drawer Navigation -->
     <string name="item_my_review">나의 리뷰</string>
     <string name="item_profile_update">프로필 수정</string>
+
+    <!-- Drawer Header -->
+    <string name="txt_nickname">Nickname</string>
     <string name="tv_sir">님</string>
 
     <!-- Menu Review Search -->
@@ -83,9 +80,6 @@
     <!-- Activity Main -->
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
-
-    <!-- Fragment Review -->
-    <string name="txt_review">Review</string>
 
     <!-- Activity Write -->
     <string name="tv_write_title">Review Title</string>
@@ -98,7 +92,7 @@
 
     <string name="btn_write_review">Submit</string>
 
-    <!-- Activity ReviewDetail -->
+    <!-- Activity Review Detail / Personal Detail -->
     <string name="tv_reviewer">Reviewer</string>
     <string name="tv_review_date">Review Date</string>
     <string name="tv_review_title">Review Title</string>
