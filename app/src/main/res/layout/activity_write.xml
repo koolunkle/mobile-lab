@@ -78,11 +78,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="@string/tv_write_title"
         app:layout_constraintBottom_toTopOf="@id/et_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardView" />
+        app:layout_constraintTop_toBottomOf="@id/ratingBar_cinema" />
+
+    <TextView
+        android:id="@+id/tv_title_limit"
+        style="@style/text_12_808080"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/tv_write_title_limit"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toEndOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
 
     <EditText
         android:id="@+id/et_title"
@@ -93,7 +104,8 @@
         android:hint="@string/et_write_title"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:maxLines="1"
+        android:lines="1"
+        android:maxLength="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -104,11 +116,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="@string/tv_write_comment"
         app:layout_constraintBottom_toTopOf="@id/et_comment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_title" />
+
+    <TextView
+        android:id="@+id/tv_comment_limit"
+        style="@style/text_12_808080"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/tv_write_comment_limit"
+        app:layout_constraintBottom_toBottomOf="@id/tv_comment"
+        app:layout_constraintStart_toEndOf="@id/tv_comment"
+        app:layout_constraintTop_toTopOf="@id/tv_comment" />
 
     <EditText
         android:id="@+id/et_comment"
@@ -118,8 +141,9 @@
         android:gravity="center"
         android:hint="@string/et_write_comment"
         android:importantForAutofill="no"
-        android:inputType="text"
-        android:maxLines="1"
+        android:inputType="textMultiLine"
+        android:lines="2"
+        android:maxLength="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_comment" />
@@ -142,8 +166,10 @@
         android:layout_margin="10dp"
         android:background="@drawable/button_10_dodger_blue"
         android:text="@string/btn_write_review"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
