@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     if (isUser) {
                         setToast("Login Successful")
-                        SharedPreferences.setToken(applicationContext, loginUser?.key!!).toString()
+                        SharedPreferences.setToken(applicationContext, loginUser?.key!!)
                         startActivity(intent)
                     } else setToast("Nickname or Password does not match")
                 }
