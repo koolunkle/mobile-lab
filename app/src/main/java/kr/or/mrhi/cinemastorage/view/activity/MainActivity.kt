@@ -2,7 +2,6 @@ package kr.or.mrhi.cinemastorage.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
@@ -10,9 +9,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kr.or.mrhi.cinemastorage.R
+import kr.or.mrhi.cinemastorage.dao.UserDAO
+import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
+import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.view.activity.user.PersonalActivity
 import kr.or.mrhi.cinemastorage.view.activity.user.UpdateUserinfoActivity
 import kr.or.mrhi.cinemastorage.view.adapter.MainAdapter
@@ -26,41 +30,60 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var toggle: ActionBarDrawerToggle
 
-    lateinit var key: String
-    lateinit var nickname: String
+    private var globalUser: User? = null
+
+    private var loginUser: User? = null
+
+    private var isUser = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (intent.hasExtra("key") && intent.hasExtra("nick")) {
-            key = intent.getStringExtra("key")!!
-            nickname = intent.getStringExtra("nick")!!
-            Log.d("intent check", "${key} ${nickname}")
-        }
-        val navigationView: NavigationView = binding.navigationView
-        val header = navigationView.getHeaderView(0)
-        val headerNickname = header.findViewById<TextView>(R.id.tv_nickname)
-        headerNickname.setText(nickname)
-
-
         binding.apply {
             setViewPager()
             setBottomNavigationSelected()
             setDrawerLayout()
             setDrawerNavigationSelected()
+            getUserNickname()
         }
+    }
+
+    private fun getUserNickname() {
+        val userDAO = UserDAO()
+        userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.children) {
+                    globalUser = data.getValue(User::class.java)
+                    if (globalUser?.key == SharedPreferences.getToken(applicationContext)) {
+                        loginUser =
+                            User(globalUser?.key!!, globalUser?.nickname, globalUser?.password)
+                        isUser = true
+                    }
+                }
+                if (isUser) setNavigationHeaderView(loginUser?.nickname!!)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                setToast(error.message)
+            }
+        })
+    }
+
+    private fun setNavigationHeaderView(nickname: String) {
+        val navigation = binding.navigationView
+        val header = navigation.getHeaderView(0)
+        val headerValue = header.findViewById<TextView>(R.id.tv_nickname)
+        headerValue.text = nickname
     }
 
     private fun setDrawerNavigationSelected() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_review -> {
-                    val intent = Intent(applicationContext, PersonalActivity::class.java)
-                    intent.putExtra("key", key)
-                    startActivity(intent)
-                }
+                R.id.nav_review -> startActivity(
+                    Intent(this, PersonalActivity::class.java)
+                )
                 R.id.nav_profile_update -> startActivity(
                     Intent(this, UpdateUserinfoActivity::class.java)
                 )
@@ -120,6 +143,10 @@ class MainActivity : AppCompatActivity() {
             System.runFinalization()
             exitProcess(0)
         }
+    }
+
+    private fun setToast(message: String) {
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
