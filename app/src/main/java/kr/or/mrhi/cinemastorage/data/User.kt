@@ -1,7 +1,7 @@
 package kr.or.mrhi.cinemastorage.data
 
 data class User(
-    val key: String = "",
-    val nickname: String? = "",
+    var key: String = "",
+    var nickname: String? = "",
     val password: String? = ""
 )

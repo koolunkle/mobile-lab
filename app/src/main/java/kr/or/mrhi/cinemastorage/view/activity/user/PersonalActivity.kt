@@ -5,8 +5,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.Review
@@ -20,11 +24,18 @@ class PersonalActivity : AppCompatActivity() {
     private lateinit var reviewAdapter: ReviewAdapter
     private var reviewList: ArrayList<Review>? = arrayListOf()
     private lateinit var user: User
+    lateinit var key: String
+    private var isUser = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPersonalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (intent.hasExtra("key")) {
+            key = intent.getStringExtra("key")!!
+            Log.d("intent check", key)
+        }
 
         /*get the profile image from FirebaseStorage*/
         val userDAO = UserDAO()
@@ -38,7 +49,23 @@ class PersonalActivity : AppCompatActivity() {
             }
         }
         /*binding nickname*/
-        binding.tvNickname.text = user.nickname
+        var user: User? = null
+        userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.children) {
+                    user = data.getValue(User::class.java)
+                    if (key == user?.key) isUser = true
+                }
+                if (isUser) {
+                    binding.tvNickname.text = user?.nickname
+                } else setToast("Nickname or Password does not match")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                setToast(error.message)
+            }
+        })
+
 
         /*해당 유저가 작성한 리뷰 갯수만 가져와야 함
          binding.tvRvCountNo.text = reviewList?.size.toString()*/
@@ -52,7 +79,7 @@ class PersonalActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_search -> Log.d("cinamestorage", "PersonalActivity omOptionsItemSelected()")
+            R.id.menu_search -> Log.d(" cinamestorage", "PersonalActivity omOptionsItemSelected()")
         }
         return super.onOptionsItemSelected(item)
     }
@@ -78,4 +105,9 @@ class PersonalActivity : AppCompatActivity() {
         })
         return super.onCreateOptionsMenu(menu)
     }
+
+    private fun setToast(message: String) {
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+    }
+
 }
