@@ -10,11 +10,16 @@ import com.google.firebase.database.ValueEventListener
 import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityLoginBinding
+import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.view.activity.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+
+    private var globalUser: User? = null
+
+    private var loginUser: User? = null
 
     private var isUser = false
 
@@ -40,23 +45,20 @@ class LoginActivity : AppCompatActivity() {
 
             val userDAO = UserDAO()
             val intent = Intent(applicationContext, MainActivity::class.java)
-            var user: User?
-            var loginUser:User? = null
 
             userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (data in snapshot.children) {
-                        user = data.getValue(User::class.java)
-                        if (nickname == user?.nickname && password == user?.password){
+                        globalUser = data.getValue(User::class.java)
+                        if (nickname == globalUser?.nickname && password == globalUser?.password) {
+                            loginUser =
+                                User(globalUser?.key!!, globalUser?.nickname, globalUser?.password)
                             isUser = true
-                            loginUser = User(user!!.key, user?.nickname, user?.password)
                         }
                     }
                     if (isUser) {
                         setToast("Login Successful")
-                        /*values of the login_user to MainActivity*/
-                        intent.putExtra("key", loginUser?.key)
-                        intent.putExtra("nick", loginUser?.nickname)
+                        SharedPreferences.setToken(applicationContext, loginUser?.key!!).toString()
                         startActivity(intent)
                     } else setToast("Nickname or Password does not match")
                 }
