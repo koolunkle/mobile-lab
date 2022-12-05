@@ -1,7 +1,5 @@
 
 x
-Happ/src/main/java/kr/or/mrhi/cinemastorage/view/activity/MainActivity.kt,0\1\01f61c21e7899a6428ccd768276ed57918e1c373
-x
 Happ/src/main/java/kr/or/mrhi/cinemastorage/view/fragment/ListFragment.kt,d\7\d7de0fb60542a1c8663c6206f17e637e3e13eeaf
 :
 
