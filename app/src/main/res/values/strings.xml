@@ -61,9 +61,9 @@
     <string name="btn_review">Create Review</string>
 
     <!-- Activity Personal -->
-    <string name="my_review">나의 리뷰</string>
-    <string name="rv_count">내가 작성한 리뷰 :</string>
-    <string name="rv_count_no">100</string>
+    <string name="tv_my_review">나의 리뷰</string>
+    <string name="tv_review_count">내가 작성한 리뷰 :</string>
+    <string name="tv_review_count_no">0</string>
 
     <!-- Item Review User -->
     <string name="user_reviewer">작성자 : </string>
