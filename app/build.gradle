@@ -4,6 +4,8 @@ plugins {
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
 }
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'kr.or.mrhi.cinemastorage'
@@ -17,7 +19,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+        buildConfigField "String","POPULAR_KEY", properties["movie_popular_api_key"]
+        buildConfigField "String","TOP_RATE_KEY", properties["movie_top_rated_api_key"]
+        buildConfigField "String","UPCOMING_KEY", properties["movie_upcoming_api_key"]
     }
 
     buildTypes {
