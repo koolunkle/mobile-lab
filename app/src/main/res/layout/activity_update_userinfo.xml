@@ -104,8 +104,8 @@
             style="@style/text_25_bold_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/btn_delete_id"
-            android:layout_alignBottom="@id/btn_delete_id"
+            android:layout_alignTop="@id/btn_clear_nickname"
+            android:layout_alignBottom="@id/btn_clear_nickname"
             android:layout_marginStart="20dp"
             android:background="@null"
             android:hint="@string/tv_nickname"
@@ -113,7 +113,7 @@
             android:inputType="text" />
 
         <ImageButton
-            android:id="@+id/btn_delete_id"
+            android:id="@+id/btn_clear_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/view_back00"

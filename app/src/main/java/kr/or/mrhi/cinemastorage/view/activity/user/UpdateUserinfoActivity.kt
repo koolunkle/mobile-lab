@@ -1,6 +1,7 @@
 package kr.or.mrhi.cinemastorage.view.activity.user
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
@@ -14,6 +15,8 @@ import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityUpdateUserinfoBinding
 import kr.or.mrhi.cinemastorage.util.SharedPreferences
+import kr.or.mrhi.cinemastorage.view.activity.MainActivity
+import java.io.File
 
 class UpdateUserinfoActivity : AppCompatActivity() {
 
@@ -34,8 +37,8 @@ class UpdateUserinfoActivity : AppCompatActivity() {
             setPreviousUserInfo()
             getExternalContentUri()
             uploadExternalContentUri()
+            cancelButtonClick()
         }
-
     }
 
     /*기존의 프로필이미지, 아이디, 비밀번호 불러와서 셋팅*/
@@ -50,9 +53,9 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                             User(globalUser?.key!!, globalUser?.nickname, globalUser?.password)
                     }
                 }
-                val imagereference =
+                val imageReference =
                     userDAO.storage!!.reference.child("images/${loginUser?.key}.jpg")
-                imagereference.downloadUrl.addOnCompleteListener {
+                imageReference.downloadUrl.addOnCompleteListener {
                     if (it.isSuccessful) {
                         Glide.with(applicationContext).load(it.result).into(binding.ivProfile)
                     }
@@ -69,38 +72,45 @@ class UpdateUserinfoActivity : AppCompatActivity() {
 
     /*변경된 이미지나 닉네임, 패스워드 firebase에 넣기*/
     private fun uploadExternalContentUri() {
-        binding.btnSave.setOnClickListener {
-            val nickname = binding.edtNickname.text
-            val password = binding.edtPw.text
-            val loginUserKey = SharedPreferences.getToken(applicationContext)
-            val userDAO = UserDAO()
-//            val intent = Intent(applicationContext, MainActivity::class.java)
+        binding.apply {
+            btnClearNickname.setOnClickListener {
+                binding.edtNickname.text = null
+            }
+            btnDeletePw.setOnClickListener {
+                binding.edtPw.text = null
+            }
+            btnSave.setOnClickListener {
+                val nickname = binding.edtNickname.text.toString()
+                val password = binding.edtPw.text.toString()
+                val loginUserKey = SharedPreferences.getToken(applicationContext)
+                val userDAO = UserDAO()
+                val intent = Intent(applicationContext, MainActivity::class.java)
 
-            val hashMap: HashMap<String, Any> = HashMap()
-            hashMap["key"] = loginUserKey
-            hashMap["nickname"] = nickname
-            hashMap["password"] = password
+                val hashMap: HashMap<String, Any> = HashMap()
+                hashMap["nickname"] = nickname
+                hashMap["password"] = password
 
-//            val user = User(loginUserKey, nickname.toString(), password.toString())
-            userDAO.databaseReference?.child("user/${loginUserKey}")?.updateChildren(hashMap)
+                userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)
+                    ?.addOnSuccessListener {
+                        loginUser = User(loginUserKey, nickname, password)
+                        SharedPreferences.setToken(applicationContext, loginUserKey).toString()
 
+                        val imageReference =
+                            userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
+                        val file = Uri.fromFile(File(filePath))
 
-/*            userDAO.updateUser(loginUserKey.toString(), hashMap).addOnSuccessListener {
-                val imageReference = userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
-                val file = Uri.fromFile(File(filePath))
-                imageReference?.putFile(file)?.addOnSuccessListener {
-                    Toast.makeText(this, "update user success", Toast.LENGTH_SHORT).show()
-
-                    *//*val intent = Intent(applicationContext, MainActivity::class.java)*//*
-                    startActivity(intent)
-                }?.addOnFailureListener {
-                    Toast.makeText( this, "update user profile failed", Toast.LENGTH_SHORT).show()
-                }
-            }.addOnFailureListener {
-                Toast.makeText(this, "update user id/pw failed", Toast.LENGTH_SHORT).show()
-            }*/
+                        imageReference?.putFile(file)?.addOnSuccessListener {
+                            setToast("User information update succeeded.")
+                            startActivity(intent)
+                            finish()
+                        }
+                    }?.addOnFailureListener {
+                        setToast("User information update failed.")
+                    }
+            }
         }
     }
+
 
     /*프로필이미지 클릭하고 디바이스 갤러리에서 사진 가져오기*/
     private fun getExternalContentUri() {
@@ -109,11 +119,9 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                 if (it.resultCode == RESULT_OK) {
                     Glide.with(this).load(it.data?.data).into(binding.ivProfile)
 
-                    val cursor = contentResolver.query(it.data?.data!!,
-                        arrayOf(MediaStore.Images.Media.DATA),
-                        null,
-                        null,
-                        null)
+                    val cursor = contentResolver.query(
+                        it.data?.data!!, arrayOf(MediaStore.Images.Media.DATA), null, null, null
+                    )
                     cursor?.moveToFirst().let {
                         if (cursor != null) filePath = cursor.getString(0)
                         cursor?.close()
@@ -124,6 +132,13 @@ class UpdateUserinfoActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             requestLauncher.launch(intent)
+        }
+    }
+
+    private fun cancelButtonClick() {
+        binding.btnCancel.setOnClickListener {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
