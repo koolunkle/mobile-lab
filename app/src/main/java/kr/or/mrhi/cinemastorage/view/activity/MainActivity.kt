@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.navigation.NavigationView
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
 import kr.or.mrhi.cinemastorage.view.activity.user.PersonalActivity
@@ -37,6 +39,11 @@ class MainActivity : AppCompatActivity() {
             nickname = intent.getStringExtra("nick")!!
             Log.d("intent check", "${key} ${nickname}")
         }
+        val navigationView: NavigationView = binding.navigationView
+        val header = navigationView.getHeaderView(0)
+        val headerNickname = header.findViewById<TextView>(R.id.tv_nickname)
+        headerNickname.setText(nickname)
+
 
         binding.apply {
             setViewPager()
