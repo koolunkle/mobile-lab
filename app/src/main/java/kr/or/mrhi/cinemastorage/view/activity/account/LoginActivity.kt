@@ -40,18 +40,23 @@ class LoginActivity : AppCompatActivity() {
 
             val userDAO = UserDAO()
             val intent = Intent(applicationContext, MainActivity::class.java)
-            var user: User? = null
+            var user: User?
+            var loginUser:User? = null
 
             userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (data in snapshot.children) {
                         user = data.getValue(User::class.java)
-                        if (nickname == user?.nickname && password == user?.password) isUser = true
+                        if (nickname == user?.nickname && password == user?.password){
+                            isUser = true
+                            loginUser = User(user!!.key, user?.nickname, user?.password)
+                        }
                     }
                     if (isUser) {
                         setToast("Login Successful")
-                        intent.putExtra("key", user?.key)
-                        intent.putExtra("nick", user?.nickname)
+                        /*values of the login_user to MainActivity*/
+                        intent.putExtra("key", loginUser?.key)
+                        intent.putExtra("nick", loginUser?.nickname)
                         startActivity(intent)
                     } else setToast("Nickname or Password does not match")
                 }
