@@ -1,4 +1,4 @@
-package kr.or.mrhi.cinemastorage.view.activity
+package kr.or.mrhi.cinemastorage.view.activity.review
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
