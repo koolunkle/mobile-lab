@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getUserNickname() {
         val userDAO = UserDAO()
-        userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+        userDAO.databaseReference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
                     globalUser = data.getValue(User::class.java)
@@ -133,7 +134,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (System.currentTimeMillis() - backPressedTime >= 1500) {
+        val drawerLayout = binding.drawerLayout
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)
+        else if (System.currentTimeMillis() - backPressedTime >= 1500) {
             backPressedTime = System.currentTimeMillis()
             Toast.makeText(
                 this, resources.getString(R.string.toast_back_pressed), Toast.LENGTH_SHORT
