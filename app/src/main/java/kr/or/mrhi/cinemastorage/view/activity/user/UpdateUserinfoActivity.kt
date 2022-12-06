@@ -92,23 +92,41 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                 hashMap["nickname"] = nickname
                 hashMap["password"] = password
 
-                userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)
-                    ?.addOnSuccessListener {
-                        loginUser = User(loginUserKey, nickname, password)
-                        SharedPreferences.setToken(applicationContext, loginUserKey).toString()
-
-                        val imageReference =
-                            userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
-                        val file = Uri.fromFile(File(filePath))
-
-                        imageReference?.putFile(file)?.addOnSuccessListener {
-                            setToast("User information update succeeded.")
-                            startActivity(intent)
-                            finish()
+                userDAO.databaseReference?.addListenerForSingleValueEvent(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (data in snapshot.children) {
+                            globalUser = data.getValue(User::class.java)
+                            if (globalUser?.key != SharedPreferences.getToken(applicationContext) && globalUser?.nickname == nickname) {
+                                setToast("Duplicate nickname")
+                                userDAO.databaseReference!!.removeEventListener(this)
+                                return
+                            }
                         }
-                    }?.addOnFailureListener {
+                        userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)
+                            ?.addOnSuccessListener {
+                                loginUser = User(loginUserKey, nickname, password)
+                                SharedPreferences.setToken(applicationContext, loginUserKey)
+                                    .toString()
+
+                                val imageReference =
+                                    userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
+                                val file = Uri.fromFile(File(filePath))
+
+                                imageReference?.putFile(file)?.addOnSuccessListener {
+                                    setToast("User information update succeeded.")
+                                    startActivity(intent)
+                                    finish()
+                                }
+                            }?.addOnFailureListener {
+                                setToast("User information update failed.")
+                            }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
                         setToast("User information update failed.")
                     }
+                })
             }
         }
     }
