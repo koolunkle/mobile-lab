@@ -50,11 +50,10 @@ class SignUpActivity : AppCompatActivity() {
                 userDAO.databaseReference?.addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        val child: Iterator<DataSnapshot> = snapshot.children.iterator()
-                        while (child.hasNext()) {
-                            if (nickname.toString() == child.next().key) {
+                        for (data in snapshot.children) {
+                            val globalUser = data.getValue(User::class.java)
+                            if (globalUser?.nickname == nickname.toString()) {
                                 setToast("Duplicate nickname")
-                                userDAO.databaseReference!!.removeEventListener(this)
                                 return
                             }
                         }
@@ -64,8 +63,8 @@ class SignUpActivity : AppCompatActivity() {
 
                         imageReference?.putFile(file)?.apply {
                             addOnSuccessListener {
-                                userDAO.databaseReference?.child(userKey.toString())
-                                    ?.setValue(user).apply {
+                                userDAO.databaseReference?.child(userKey.toString())?.setValue(user)
+                                    .apply {
                                         addOnSuccessListener { setToast("Success to insert data") }
                                         addOnFailureListener { setToast("Failed to insert data") }
                                     }
