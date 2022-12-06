@@ -11,7 +11,9 @@ import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kr.or.mrhi.cinemastorage.dao.ReviewDAO
 import kr.or.mrhi.cinemastorage.dao.UserDAO
+import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityUpdateUserinfoBinding
 import kr.or.mrhi.cinemastorage.util.SharedPreferences
@@ -41,7 +43,6 @@ class UpdateUserinfoActivity : AppCompatActivity() {
         }
     }
 
-    /*기존의 프로필이미지, 아이디, 비밀번호 불러와서 셋팅*/
     private fun setPreviousUserInfo() {
         val userDAO = UserDAO()
         userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -56,9 +57,8 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                 val imageReference =
                     userDAO.storage!!.reference.child("images/${loginUser?.key}.jpg")
                 imageReference.downloadUrl.addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Glide.with(applicationContext).load(it.result).into(binding.ivProfile)
-                    }
+                    if (it.isSuccessful) Glide.with(applicationContext).load(it.result)
+                        .into(binding.ivProfile)
                 }
                 binding.edtNickname.setText(loginUser?.nickname)
                 binding.edtPw.setText(loginUser?.password!!)
@@ -70,27 +70,61 @@ class UpdateUserinfoActivity : AppCompatActivity() {
         })
     }
 
-    /*변경된 이미지나 닉네임, 패스워드 firebase에 넣기*/
     private fun uploadExternalContentUri() {
-        binding.apply {
-            btnClearNickname.setOnClickListener {
-                binding.edtNickname.text = null
-            }
-            btnDeletePw.setOnClickListener {
-                binding.edtPw.text = null
-            }
-            btnSave.setOnClickListener {
-                val nickname = binding.edtNickname.text.toString()
-                val password = binding.edtPw.text.toString()
-                val loginUserKey = SharedPreferences.getToken(applicationContext)
-                val userDAO = UserDAO()
-                val intent = Intent(applicationContext, MainActivity::class.java)
+        binding.btnClearNickname.setOnClickListener { binding.edtNickname.text.clear() }
+        binding.btnDeletePw.setOnClickListener { binding.edtPw.text.clear() }
 
-                val hashMap: HashMap<String, Any> = HashMap()
-                hashMap["nickname"] = nickname
-                hashMap["password"] = password
+        binding.btnSave.setOnClickListener {
+            val nickname = binding.edtNickname.text.toString()
+            val password = binding.edtPw.text.toString()
+            val loginUserKey = SharedPreferences.getToken(applicationContext)
 
-                userDAO.databaseReference?.addListenerForSingleValueEvent(object :
+            val hashMap: HashMap<String, Any> = HashMap()
+            hashMap["nickname"] = nickname
+            hashMap["password"] = password
+
+            val userDAO = UserDAO()
+            userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)?.apply {
+                addOnSuccessListener {
+                    val reviewMap: HashMap<String, Any> = HashMap()
+                    val reviewDAO = ReviewDAO()
+
+                    reviewMap["reviewer"] = nickname
+                    reviewDAO.databaseReference?.addListenerForSingleValueEvent(object :
+                        ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for (data in snapshot.children) {
+                                val review = data.getValue(Review::class.java)!!
+                                if (review.key == SharedPreferences.getToken(applicationContext)) {
+                                    reviewDAO.databaseReference?.child(review.date.toString())
+                                        ?.updateChildren(reviewMap)
+                                }
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            setToast(error.message)
+                        }
+                    })
+
+                    val imageReference =
+                        userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
+                    val file = Uri.fromFile(File(filePath))
+
+                    imageReference?.putFile(file)?.apply {
+                        addOnSuccessListener {
+                            setToast("User information update succeeded.")
+                            startActivity(Intent(applicationContext, MainActivity::class.java))
+                            finish()
+                        }
+                        addOnFailureListener { setToast("User information update failed.") }
+                    }
+                }
+                addOnFailureListener {
+                    setToast("User information update failed.")
+                }
+            }
+              userDAO.databaseReference?.addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (data in snapshot.children) {
@@ -103,10 +137,6 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                         }
                         userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)
                             ?.addOnSuccessListener {
-                                loginUser = User(loginUserKey, nickname, password)
-                                SharedPreferences.setToken(applicationContext, loginUserKey)
-                                    .toString()
-
                                 if(filePath != null){
                                     val imageReference =
                                         userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
@@ -128,12 +158,9 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                         setToast("User information update failed.")
                     }
                 })
-            }
         }
     }
 
-
-    /*프로필이미지 클릭하고 디바이스 갤러리에서 사진 가져오기*/
     private fun getExternalContentUri() {
         val requestLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

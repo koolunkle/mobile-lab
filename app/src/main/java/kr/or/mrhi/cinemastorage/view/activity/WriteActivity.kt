@@ -97,7 +97,6 @@ class WriteActivity : AppCompatActivity() {
             val rating = binding.ratingBar.rating
 
             val reviewDAO = ReviewDAO()
-            val reviewKey = reviewDAO.databaseReference?.push()?.key
             val review = Review(
                 key,
                 reviewer,
@@ -112,7 +111,7 @@ class WriteActivity : AppCompatActivity() {
                 setToast("Please enter your title, image and comment at all")
                 return@setOnClickListener
             } else {
-                reviewDAO.databaseReference?.child(reviewKey.toString())?.setValue(review)?.apply {
+                reviewDAO.databaseReference?.child(date)?.setValue(review)?.apply {
                     addOnSuccessListener { setToast("Success to insert data") }
                     addOnFailureListener { setToast("Failed to insert data") }
                 }
