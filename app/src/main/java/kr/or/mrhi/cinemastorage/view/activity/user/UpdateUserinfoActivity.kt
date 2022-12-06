@@ -30,21 +30,28 @@ class UpdateUserinfoActivity : AppCompatActivity() {
 
     private var filePath: String? = null
 
+    private val userDAO = UserDAO()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateUserinfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.apply {
-            setPreviousUserInfo()
             getExternalContentUri()
-            uploadExternalContentUri()
-            cancelButtonClick()
+            setPreviousUserInfo()
+            setUpdateUserInfo()
+            moveToMain()
+            setTextClear()
         }
     }
 
+    private fun setTextClear() {
+        binding.btnClearNickname.setOnClickListener { binding.edtNickname.text.clear() }
+        binding.btnDeletePw.setOnClickListener { binding.edtPw.text.clear() }
+    }
+
     private fun setPreviousUserInfo() {
-        val userDAO = UserDAO()
         userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
@@ -70,10 +77,50 @@ class UpdateUserinfoActivity : AppCompatActivity() {
         })
     }
 
-    private fun uploadExternalContentUri() {
-        binding.btnClearNickname.setOnClickListener { binding.edtNickname.text.clear() }
-        binding.btnDeletePw.setOnClickListener { binding.edtPw.text.clear() }
+    private fun updateReviewer(
+        loginUserKey: String, hashMap: HashMap<String, Any>, nickname: String
+    ) {
+        userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)?.apply {
+            addOnSuccessListener {
+                val reviewDAO = ReviewDAO()
+                val reviewMap: HashMap<String, Any> = HashMap()
+                reviewMap["reviewer"] = nickname
 
+                reviewDAO.databaseReference?.addListenerForSingleValueEvent(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (data in snapshot.children) {
+                            val review = data.getValue(Review::class.java)!!
+                            if (review.key == SharedPreferences.getToken(applicationContext)) {
+                                reviewDAO.databaseReference?.child(review.date.toString())
+                                    ?.updateChildren(reviewMap)
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        setToast(error.message)
+                    }
+                })
+            }
+            setToast("Succeed to update user nickname")
+            addOnFailureListener { setToast("Failed to update user nickname") }
+        }
+    }
+
+    private fun updateProfile(loginUserKey: String) {
+        if (filePath != null) {
+            val imageReference = userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
+            val file = Uri.fromFile(File(filePath!!))
+
+            imageReference?.putFile(file)?.apply {
+                addOnSuccessListener { setToast("Succeed to update user profile") }
+                addOnFailureListener { setToast("Failed to update user profile") }
+            }
+        }
+    }
+
+    private fun setUpdateUserInfo() {
         binding.btnSave.setOnClickListener {
             val nickname = binding.edtNickname.text.toString()
             val password = binding.edtPw.text.toString()
@@ -83,81 +130,23 @@ class UpdateUserinfoActivity : AppCompatActivity() {
             hashMap["nickname"] = nickname
             hashMap["password"] = password
 
-            val userDAO = UserDAO()
-            userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)?.apply {
-                addOnSuccessListener {
-                    val reviewMap: HashMap<String, Any> = HashMap()
-                    val reviewDAO = ReviewDAO()
-
-                    reviewMap["reviewer"] = nickname
-                    reviewDAO.databaseReference?.addListenerForSingleValueEvent(object :
-                        ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            for (data in snapshot.children) {
-                                val review = data.getValue(Review::class.java)!!
-                                if (review.key == SharedPreferences.getToken(applicationContext)) {
-                                    reviewDAO.databaseReference?.child(review.date.toString())
-                                        ?.updateChildren(reviewMap)
-                                }
-                            }
+            userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (data in snapshot.children) {
+                        globalUser = data.getValue(User::class.java)
+                        if (globalUser?.key != SharedPreferences.getToken(applicationContext) && globalUser?.nickname == nickname) {
+                            setToast("Duplicate nickname")
+                            return
                         }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            setToast(error.message)
-                        }
-                    })
-
-                    val imageReference =
-                        userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
-                    val file = Uri.fromFile(File(filePath))
-
-                    imageReference?.putFile(file)?.apply {
-                        addOnSuccessListener {
-                            setToast("User information update succeeded.")
-                            startActivity(Intent(applicationContext, MainActivity::class.java))
-                            finish()
-                        }
-                        addOnFailureListener { setToast("User information update failed.") }
                     }
+                    updateReviewer(loginUserKey, hashMap, nickname)
+                    updateProfile(loginUserKey)
                 }
-                addOnFailureListener {
-                    setToast("User information update failed.")
+
+                override fun onCancelled(error: DatabaseError) {
+                    setToast(error.message)
                 }
-            }
-              userDAO.databaseReference?.addListenerForSingleValueEvent(object :
-                    ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        for (data in snapshot.children) {
-                            globalUser = data.getValue(User::class.java)
-                            if (globalUser?.key != SharedPreferences.getToken(applicationContext) && globalUser?.nickname == nickname) {
-                                setToast("Duplicate nickname")
-                                userDAO.databaseReference!!.removeEventListener(this)
-                                return
-                            }
-                        }
-                        userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)
-                            ?.addOnSuccessListener {
-                                if(filePath != null){
-                                    val imageReference =
-                                        userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
-                                    val file = Uri.fromFile(File(filePath!!))
-
-                                    imageReference?.putFile(file)?.addOnSuccessListener {
-                                        setToast("User information update succeeded.")
-                                    }
-                                }
-
-                                startActivity(intent)
-                                finish()
-                            }?.addOnFailureListener {
-                                setToast("User information update failed.")
-                            }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        setToast("User information update failed.")
-                    }
-                })
+            })
         }
     }
 
@@ -183,10 +172,11 @@ class UpdateUserinfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun cancelButtonClick() {
+    private fun moveToMain() {
         binding.btnCancel.setOnClickListener {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
