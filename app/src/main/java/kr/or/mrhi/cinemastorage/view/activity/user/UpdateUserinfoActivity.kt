@@ -28,7 +28,7 @@ class UpdateUserinfoActivity : AppCompatActivity() {
 
     private var loginUser: User? = null
 
-    private lateinit var filePath: String
+    private var filePath: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,6 +124,40 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                     setToast("User information update failed.")
                 }
             }
+              userDAO.databaseReference?.addListenerForSingleValueEvent(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (data in snapshot.children) {
+                            globalUser = data.getValue(User::class.java)
+                            if (globalUser?.key != SharedPreferences.getToken(applicationContext) && globalUser?.nickname == nickname) {
+                                setToast("Duplicate nickname")
+                                userDAO.databaseReference!!.removeEventListener(this)
+                                return
+                            }
+                        }
+                        userDAO.databaseReference?.child(loginUserKey)?.updateChildren(hashMap)
+                            ?.addOnSuccessListener {
+                                if(filePath != null){
+                                    val imageReference =
+                                        userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
+                                    val file = Uri.fromFile(File(filePath!!))
+
+                                    imageReference?.putFile(file)?.addOnSuccessListener {
+                                        setToast("User information update succeeded.")
+                                    }
+                                }
+
+                                startActivity(intent)
+                                finish()
+                            }?.addOnFailureListener {
+                                setToast("User information update failed.")
+                            }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        setToast("User information update failed.")
+                    }
+                })
         }
     }
 
