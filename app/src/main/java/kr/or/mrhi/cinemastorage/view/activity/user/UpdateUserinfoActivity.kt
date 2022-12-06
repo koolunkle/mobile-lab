@@ -75,9 +75,11 @@ class UpdateUserinfoActivity : AppCompatActivity() {
         binding.apply {
             btnClearNickname.setOnClickListener {
                 binding.edtNickname.text = null
+                binding.edtNickname.setSelection(0)
             }
             btnDeletePw.setOnClickListener {
                 binding.edtPw.text = null
+                binding.edtPw.setSelection(0)
             }
             btnSave.setOnClickListener {
                 val nickname = binding.edtNickname.text.toString()
