@@ -26,7 +26,7 @@ class UpdateUserinfoActivity : AppCompatActivity() {
 
     private var loginUser: User? = null
 
-    private lateinit var filePath: String
+    private var filePath: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,11 +75,9 @@ class UpdateUserinfoActivity : AppCompatActivity() {
         binding.apply {
             btnClearNickname.setOnClickListener {
                 binding.edtNickname.text = null
-                binding.edtNickname.setSelection(0)
             }
             btnDeletePw.setOnClickListener {
                 binding.edtPw.text = null
-                binding.edtPw.setSelection(0)
             }
             btnSave.setOnClickListener {
                 val nickname = binding.edtNickname.text.toString()
@@ -109,15 +107,18 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                                 SharedPreferences.setToken(applicationContext, loginUserKey)
                                     .toString()
 
-                                val imageReference =
-                                    userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
-                                val file = Uri.fromFile(File(filePath))
+                                if(filePath != null){
+                                    val imageReference =
+                                        userDAO.storage?.reference?.child("images/${loginUserKey}.jpg")
+                                    val file = Uri.fromFile(File(filePath!!))
 
-                                imageReference?.putFile(file)?.addOnSuccessListener {
-                                    setToast("User information update succeeded.")
-                                    startActivity(intent)
-                                    finish()
+                                    imageReference?.putFile(file)?.addOnSuccessListener {
+                                        setToast("User information update succeeded.")
+                                    }
                                 }
+
+                                startActivity(intent)
+                                finish()
                             }?.addOnFailureListener {
                                 setToast("User information update failed.")
                             }
