@@ -21,7 +21,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
 
-    private lateinit var filePath: String
+    private var filePath: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
             val userKey = userDAO.databaseReference?.push()?.key
             val user = User(userKey.toString(), nickname.toString(), password.toString())
 
-            if (binding.ivProfile.drawable == null || nickname.isBlank() || password.isBlank()) {
+            if (filePath.isNullOrBlank() || nickname.isBlank() || password.isBlank()) {
                 setToast("Please enter your profile picture, nickname and password at all")
                 return@setOnClickListener
             } else {
@@ -59,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
                         }
                         val imageReference =
                             userDAO.storage?.reference?.child("images/${userKey}.jpg")
-                        val file = Uri.fromFile(File(filePath))
+                        val file = Uri.fromFile(File(filePath.toString()))
 
                         imageReference?.putFile(file)?.apply {
                             addOnSuccessListener {
