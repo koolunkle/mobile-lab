@@ -65,4 +65,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="text_30_bold_light_gray">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/light_gray</item>
+    </style>
+
 </resources>
