@@ -44,6 +44,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_popular_title" />
 
+        <View
+            android:id="@+id/divider_popular"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/middle_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_popular_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_popular"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_popular"
             android:layout_width="match_parent"
@@ -61,6 +70,7 @@
             style="@style/text_25_bold_808080"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="@string/tv_top_title"
             app:layout_constraintBottom_toTopOf="@id/tv_top_subtitle"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +85,15 @@
             app:layout_constraintBottom_toTopOf="@id/recyclerView_top_rated"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_top_title" />
+
+        <View
+            android:id="@+id/divider_top_rated"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/middle_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_top_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_top_rated"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_top_rated"
@@ -93,7 +112,7 @@
             style="@style/text_25_bold_808080"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="@string/tv_upcoming_title"
             app:layout_constraintBottom_toTopOf="@id/tv_upcoming_subtitle"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +127,15 @@
             app:layout_constraintBottom_toTopOf="@id/recyclerView_upcoming"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_upcoming_title" />
+
+        <View
+            android:id="@+id/divider_upcoming"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/middle_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_upcoming_subtitle"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_upcoming"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_upcoming"
