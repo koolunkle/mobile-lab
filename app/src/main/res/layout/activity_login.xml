@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:padding="10dp"
     tools:context=".view.activity.account.LoginActivity">
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/text_30_bold_808080"
+        style="@style/text_30_bold_light_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
         android:text="@string/txt_title"
-        app:layout_constraintBottom_toTopOf="@id/tv_nickname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_nickname"
-        style="@style/text_30_bold_808080"
+        style="@style/text_30_bold_light_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -37,13 +39,15 @@
         android:importantForAutofill="no"
         android:inputType="text"
         android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_nickname"
         app:layout_constraintTop_toBottomOf="@id/tv_nickname" />
 
     <TextView
         android:id="@+id/tv_password"
-        style="@style/text_30_bold_808080"
+        style="@style/text_30_bold_light_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -60,6 +64,8 @@
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_password"
         app:layout_constraintTop_toBottomOf="@id/tv_password" />
@@ -69,7 +75,7 @@
         style="@style/button_20_bold_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_10_dodger_blue"
+        android:background="@drawable/button_10_dark_gray"
         android:text="@string/bttn_login"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
