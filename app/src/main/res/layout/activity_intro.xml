@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:padding="10dp"
     tools:context=".view.activity.IntroActivity">
 
@@ -11,36 +12,37 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_marginVertical="10dp"
         app:layout_constraintBottom_toTopOf="@id/dotsIndicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
         android:id="@+id/dotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:dotsColor="@color/dodger_blue"
+        android:layout_marginBottom="10dp"
+        app:dotsColor="@color/dark_gray"
         app:dotsCornerRadius="10dp"
         app:dotsSize="10dp"
         app:dotsSpacing="5dp"
-        app:dotsWidthFactor="2.5"
+        app:dotsWidthFactor="1.5"
         app:layout_constraintBottom_toTopOf="@id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewpager"
         app:progressMode="false"
-        app:selectedDotColor="@color/dodger_blue" />
+        app:selectedDotColor="@color/teal_200" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         style="@style/button_20_bold_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:background="@drawable/button_10_dodger_blue"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_10_dark_gray"
         android:text="@string/btn_login"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@id/btn_sign_up"
@@ -53,7 +55,8 @@
         style="@style/button_20_bold_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_10_dodger_blue"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/button_10_dark_gray"
         android:text="@string/btn_sign_up"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@id/btn_later"
@@ -66,10 +69,10 @@
         style="@style/button_20_bold_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/button_10_dodger_blue"
+        android:background="@drawable/button_10_dark_gray"
         android:text="@string/btn_later"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_sign_up" />
