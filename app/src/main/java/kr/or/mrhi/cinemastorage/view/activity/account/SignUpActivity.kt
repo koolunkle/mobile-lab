@@ -44,7 +44,7 @@ class SignUpActivity : AppCompatActivity() {
             val user = User(userKey.toString(), nickname.toString(), password.toString())
 
             if (filePath.isNullOrBlank() || nickname.isBlank() || password.isBlank()) {
-                setToast("Please enter your profile picture, nickname and password at all")
+                setToast("Please enter your profile, nickname and password at all")
                 return@setOnClickListener
             } else {
                 userDAO.databaseReference?.addListenerForSingleValueEvent(object :
@@ -65,11 +65,11 @@ class SignUpActivity : AppCompatActivity() {
                             addOnSuccessListener {
                                 userDAO.databaseReference?.child(userKey.toString())?.setValue(user)
                                     .apply {
-                                        addOnSuccessListener { setToast("Success to insert data") }
-                                        addOnFailureListener { setToast("Failed to insert data") }
+                                        addOnSuccessListener { setToast("Success to upload user info") }
+                                        addOnFailureListener { setToast("Failed to upload user info") }
                                     }
                             }
-                            addOnFailureListener { setToast("Failed to insert data") }
+                            addOnFailureListener { setToast("Failed to upload user profile") }
                         }
                     }
 

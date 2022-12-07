@@ -38,14 +38,11 @@ class LoginActivity : AppCompatActivity() {
             val nickname = binding.edtNickname.text.toString()
             val password = binding.edtPassword.text.toString()
 
-            if (binding.edtNickname.text.isEmpty() || binding.edtPassword.text.isEmpty()) {
+            if (binding.edtNickname.text.isBlank() || binding.edtPassword.text.isBlank()) {
                 setToast("Please enter your nickname and password")
                 return@setOnClickListener
             }
-
             val userDAO = UserDAO()
-            val intent = Intent(applicationContext, MainActivity::class.java)
-
             userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (data in snapshot.children) {
@@ -57,9 +54,9 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     if (isUser) {
-                        setToast("Login Successful")
+                        setToast("Welcome aboard, ${loginUser?.nickname}")
                         SharedPreferences.setToken(applicationContext, loginUser?.key!!)
-                        startActivity(intent)
+                        startActivity(Intent(applicationContext, MainActivity::class.java))
                     } else setToast("Nickname or Password does not match")
                 }
 
