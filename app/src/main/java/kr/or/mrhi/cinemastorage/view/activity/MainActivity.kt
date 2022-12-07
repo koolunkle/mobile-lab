@@ -7,10 +7,10 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var backPressedTime: Long = 0
-
-    private lateinit var toggle: ActionBarDrawerToggle
 
     private var globalUser: User? = null
 
@@ -104,22 +102,22 @@ class MainActivity : AppCompatActivity() {
     private fun logout() {
         SharedPreferences.removeToken(applicationContext)
         val intent = Intent(this, IntroActivity::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 
     private fun deleteAccountAlertDialog() {
-        val listner = DialogInterface.OnClickListener { dialogInterface, which ->
+        val listener = DialogInterface.OnClickListener { dialogInterface, which ->
             when (which) {
                 DialogInterface.BUTTON_POSITIVE -> deleteAccount()
                 DialogInterface.BUTTON_NEGATIVE -> dialogInterface.dismiss()
             }
         }
         val builder = AlertDialog.Builder(this)
-            .setTitle("DELETE ACOUNT")
+            .setTitle("DELETE ACCOUNT")
             .setMessage("Are you sure you want to delete your current account?")
-            .setPositiveButton("YES", listner)
-            .setNegativeButton("NO", listner)
+            .setPositiveButton("YES", listener)
+            .setNegativeButton("NO", listener)
         builder.show()
     }
 
@@ -138,6 +136,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
                 Log.d("MainActivity", "failed delete data of the account")
             }
@@ -146,15 +145,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDrawerLayout() {
-        toggle = ActionBarDrawerToggle(
-            this, binding.drawerLayout, R.string.drawer_open, R.string.drawer_close
-        )
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toggle.syncState()
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_drawer_list_24)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) return true
+        when (item.itemId) {
+            android.R.id.home -> binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -186,7 +187,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (System.currentTimeMillis() - backPressedTime >= 1500) {
+        val drawerLayout = binding.drawerLayout
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)
+        else if (System.currentTimeMillis() - backPressedTime >= 1500) {
             backPressedTime = System.currentTimeMillis()
             Toast.makeText(
                 this, resources.getString(R.string.toast_back_pressed), Toast.LENGTH_SHORT
