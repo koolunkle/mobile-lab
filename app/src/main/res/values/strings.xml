@@ -67,8 +67,10 @@
     <string name="user_review_comment">출생의 비밀이라는 식상한 소재가 등장하지만 역동적인 무협 장면들에 속이 시원해진다.</string>
 
     <!-- Menu Drawer Navigation -->
-    <string name="item_my_review">나의 리뷰</string>
-    <string name="item_profile_update">프로필 수정</string>
+    <string name="item_my_review">My Review</string>
+    <string name="item_profile_update">Edit Profile</string>
+    <string name="item_nav_logout">Logout</string>
+    <string name="item_delete_account">Delete Account</string>
 
     <!-- Drawer Header -->
     <string name="txt_nickname">Nickname</string>

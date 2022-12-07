@@ -8,4 +8,12 @@
         android:id="@+id/nav_profile_update"
         android:icon="@drawable/ic_fast_food"
         android:title="@string/item_profile_update" />
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/item_nav_logout" />
+    <item
+        android:id="@+id/nav_delete_account"
+        android:icon="@drawable/ic_delete_account"
+        android:title="@string/item_delete_account" />
 </menu>
