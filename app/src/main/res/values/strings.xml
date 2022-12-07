@@ -29,10 +29,10 @@
     <string name="tv_login">Login</string>
 
     <!-- Activity SignUp / Login -->
-    <string name="tv_title">Sign Up</string>
-    <string name="txt_title">Login</string>
+    <string name="tv_title">Getting ready to be\nwith you</string>
+    <string name="txt_title">Hope that we can be\ntogether soon</string>
 
-    <string name="txt_profile">Click here to upload the image</string>
+    <string name="txt_profile">Click circle to upload your profile</string>
     <string name="tv_nickname">Nickname</string>
     <string name="tv_password">Password</string>
 
