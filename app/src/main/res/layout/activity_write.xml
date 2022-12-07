@@ -164,7 +164,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/button_10_dodger_blue"
+        android:background="@drawable/button_10_dark_gray"
         android:text="@string/btn_write_review"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
