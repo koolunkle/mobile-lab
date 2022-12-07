@@ -97,7 +97,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-        binding.tvProfile.setOnClickListener {
+        binding.ivProfile.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
             requestLauncher.launch(intent)
