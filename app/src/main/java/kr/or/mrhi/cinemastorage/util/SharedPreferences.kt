@@ -16,5 +16,11 @@ class SharedPreferences {
             val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
             return pref.getString(TOKEN, "").toString()
         }
+
+        fun removeToken(context: Context) {
+            val pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+            val editor = pref.edit()
+            return editor.remove(TOKEN).apply()
+        }
     }
 }
