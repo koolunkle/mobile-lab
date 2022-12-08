@@ -39,14 +39,18 @@ class SignUpActivity : AppCompatActivity() {
             val nickname = binding.edtNickname.text
             val password = binding.edtPassword.text
 
+            /*userDAO: 미리 생성둔 user의 데이터베이스(realtimeDB, storage)연결객체 클래스.*/
             val userDAO = UserDAO()
             val userKey = userDAO.databaseReference?.push()?.key
             val user = User(userKey.toString(), nickname.toString(), password.toString())
 
+            /*프로필이미지, 닉네임, 비밀번호 전부 입력해야 버튼이벤트가 실행되도록 방어*/
             if (filePath.isNullOrBlank() || nickname.isBlank() || password.isBlank()) {
                 setToast("Please enter your profile, nickname and password at all")
                 return@setOnClickListener
             } else {
+                /* firebase의 realtimeDB의 데이터들을 향상된 포문으로
+                * 입력된 닉네임과 같은 닉네임을 갖은 데이터가 있는지 검사해서 동일한 닉네임 방어*/
                 userDAO.databaseReference?.addListenerForSingleValueEvent(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -57,6 +61,8 @@ class SignUpActivity : AppCompatActivity() {
                                 return
                             }
                         }
+                        /*storage에 이미지 이름을 userKey로 설정, 컨텐트리졸버로 저장한 파일패스로 파일Uri 변수 생성
+                        * putFile로 스토리지에 이미지 저장, addOnSuccessListener로 리얼타임에 유저정보 저장*/
                         val imageReference =
                             userDAO.storage?.reference?.child("images/${userKey}.jpg")
                         val file = Uri.fromFile(File(filePath.toString()))
@@ -81,6 +87,8 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    /*이미지를 클릭하면 디바이스의 갤러리로 이동해(intent) 선택한 이미지의 컨텐트리졸버로 파일경로를 저장.
+    Glide로 선택한 이미지를 바인딩 */
     private fun getExternalContentUri() {
         val requestLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()

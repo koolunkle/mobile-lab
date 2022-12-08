@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/almost_black"
     tools:context=".view.activity.WriteActivity">
 
     <ImageView
@@ -48,7 +49,7 @@
 
     <TextView
         android:id="@+id/tv_release_date"
-        style="@style/text_12_808080"
+        style="@style/text_12_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/tv_cinema_title"
@@ -74,7 +75,7 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/text_25_bold_808080"
+        style="@style/text_25_bold_middlegray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -97,6 +98,7 @@
 
     <EditText
         android:id="@+id/et_title"
+        style="@style/text_15_bold_lightgray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -106,13 +108,14 @@
         android:inputType="text"
         android:lines="1"
         android:maxLength="50"
+        android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <TextView
         android:id="@+id/tv_comment"
-        style="@style/text_25_bold_808080"
+        style="@style/text_25_bold_middlegray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -135,6 +138,7 @@
 
     <EditText
         android:id="@+id/et_comment"
+        style="@style/text_15_bold_lightgray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -144,6 +148,7 @@
         android:inputType="textMultiLine"
         android:lines="2"
         android:maxLength="50"
+        android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_comment" />

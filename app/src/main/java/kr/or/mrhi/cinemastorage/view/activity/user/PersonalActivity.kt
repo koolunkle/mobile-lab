@@ -14,6 +14,7 @@ import kr.or.mrhi.cinemastorage.data.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityPersonalBinding
 import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.view.adapter.PersonalAdapter
+import kr.or.mrhi.cinemastorage.view.decoration.Decoration
 
 class PersonalActivity : AppCompatActivity() {
 
@@ -112,6 +113,7 @@ class PersonalActivity : AppCompatActivity() {
         binding.recyclerView.apply {
             adapter = personalAdapter
             setHasFixedSize(true)
+            addItemDecoration(Decoration())
         }
     }
 

@@ -33,6 +33,7 @@ class IntroActivity : AppCompatActivity() {
         }
     }
 
+    /*Runnanle(interface)를 구현해 thread 사용*/
     inner class PagerRunnable : Runnable {
         private val handler = Handler(Looper.getMainLooper()) {
             setPage()
@@ -53,6 +54,8 @@ class IntroActivity : AppCompatActivity() {
         }
     }
 
+    /*paserAdapter 상속받은 introadapter를 바인딩.
+    *dots indicator를 이용해 총 페이지, 현재페이지를 표현*/
     private fun setViewPager() {
         val adapter = IntroAdapter(this)
         binding.viewpager.adapter = adapter
@@ -63,6 +66,7 @@ class IntroActivity : AppCompatActivity() {
         binding.dotsIndicator.setViewPager(binding.viewpager)
     }
 
+    /*버튼 이벤트 설정, 인텐트를 이용해 각각의 액티비티로 이동*/
     private fun setUpEvents() {
         val onClickListener = View.OnClickListener {
             when (it) {
@@ -76,6 +80,8 @@ class IntroActivity : AppCompatActivity() {
         binding.btnLater.setOnClickListener(onClickListener)
     }
 
+    /*멤버가입을 하지 않거나 로그인 하지 않으면 앱에 진입하지 못하도록 막았는데
+    * 나갈때 한번 더 다이얼로그로 물어봄*/
     private fun setExit() {
         val alert = AlertDialog.Builder(this)
         alert.setTitle(this.getString(R.string.dialog_title))
@@ -87,6 +93,7 @@ class IntroActivity : AppCompatActivity() {
         alert.show()
     }
 
+    /*백버튼을 한번눌렀을때(토스트 메시지를 띄우고)한번 더 누르면 앱 종료되도록 설정*/
     override fun onBackPressed() {
         if (System.currentTimeMillis() - backPressedTime >= 1500) {
             backPressedTime = System.currentTimeMillis()

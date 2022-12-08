@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             getUserNickname()
         }
     }
-
+    /*로그인 할때 sharedPreference에 저장해둔 key값으로 DB에서 유저 데이터를 가져옴*/
     private fun getUserNickname() {
         val userDAO = UserDAO()
         userDAO.databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    /*getHeaderView를 사용해 닉네임을 header의 textview에 적용*/
     private fun setNavigationHeaderView(nickname: String) {
         val navigation = binding.navigationView
         val header = navigation.getHeaderView(0)
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         headerValue.text = nickname
     }
 
+    /*navigation메뉴 선택 이벤트 설정*/
     private fun setDrawerNavigationSelected() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -98,6 +100,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*로그아웃시 sharedpreferences에 저장된 값을 지우고 인트로 페이지로 이동하면서
+    * 유저가 앱을 사용하면서 쌓인 인텐트를 정리함*/
     private fun setLogout() {
         SharedPreferences.removeToken(applicationContext)
         val intent = Intent(this, IntroActivity::class.java)
@@ -105,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    /*회원탈퇴 다이얼로그*/
     private fun deleteAccountAlertDialog() {
         val listener = DialogInterface.OnClickListener { dialogInterface, which ->
             when (which) {
@@ -118,6 +123,8 @@ class MainActivity : AppCompatActivity() {
         builder.show()
     }
 
+    /*회원탈퇴(계정삭제)시 그간 유저가 작성한 리뷰, 유저정보를 firebase에서 삭제 하고
+    * logout함수를 불러 인텐트로 이동,sharedpreference 데이터 지우기, 액티비티 정리 한다.*/
     private fun deleteAccount() {
         val userDAO = UserDAO()
         val reviewDAO = ReviewDAO()
@@ -141,6 +148,7 @@ class MainActivity : AppCompatActivity() {
         setLogout()
     }
 
+    /*drawerlayout 설정, 툴바의 아이콘을 클릭해도 열리도록 함 */
     private fun setDrawerLayout() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
@@ -148,6 +156,7 @@ class MainActivity : AppCompatActivity() {
             setHomeAsUpIndicator(R.drawable.ic_drawer_list_24)
         }
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

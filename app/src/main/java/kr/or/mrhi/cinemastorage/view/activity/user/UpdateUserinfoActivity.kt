@@ -42,13 +42,7 @@ class UpdateUserinfoActivity : AppCompatActivity() {
             setPreviousUserInfo()
             setUpdateUserInfo()
             moveToMain()
-            setTextClear()
         }
-    }
-
-    private fun setTextClear() {
-        binding.btnClearNickname.setOnClickListener { binding.edtNickname.text.clear() }
-        binding.btnDeletePw.setOnClickListener { binding.edtPw.text.clear() }
     }
 
     private fun setPreviousUserInfo() {
@@ -103,7 +97,6 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                     }
                 })
             }
-            setToast("Succeed to update user nickname")
             addOnFailureListener { setToast("Failed to update user nickname") }
         }
     }
@@ -114,7 +107,6 @@ class UpdateUserinfoActivity : AppCompatActivity() {
             val file = Uri.fromFile(File(filePath!!))
 
             imageReference?.putFile(file)?.apply {
-                addOnSuccessListener { setToast("Succeed to update user profile") }
                 addOnFailureListener { setToast("Failed to update user profile") }
             }
         }
@@ -141,6 +133,7 @@ class UpdateUserinfoActivity : AppCompatActivity() {
                     }
                     updateReviewer(loginUserKey, hashMap, nickname)
                     updateProfile(loginUserKey)
+                    setToast("Succeed to update user nickname, profile")
                 }
 
                 override fun onCancelled(error: DatabaseError) {

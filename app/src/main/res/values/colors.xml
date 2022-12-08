@@ -12,8 +12,9 @@
     <color name="summer_sky">#4DABF5</color>
     <color name="wedgewood_blue">#83A3B2</color>
 
-    <color name="dark_gray">#474747</color>
-    <color name="middle_gray">#727272</color>
+    <color name="almost_black">#1B1B1B</color>
+    <color name="dark_gray">#3E3E3E</color>
+    <color name="middle_gray">#828282</color>
     <color name="light_gray">#CDCDCD</color>
 
     <color name="turbo">#FCE903</color>
