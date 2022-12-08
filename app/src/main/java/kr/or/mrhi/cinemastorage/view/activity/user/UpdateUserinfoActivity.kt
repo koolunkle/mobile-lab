@@ -42,13 +42,7 @@ class UpdateUserinfoActivity : AppCompatActivity() {
             setPreviousUserInfo()
             setUpdateUserInfo()
             moveToMain()
-            setTextClear()
         }
-    }
-
-    private fun setTextClear() {
-        binding.btnClearNickname.setOnClickListener { binding.edtNickname.text.clear() }
-        binding.btnDeletePw.setOnClickListener { binding.edtPw.text.clear() }
     }
 
     private fun setPreviousUserInfo() {
