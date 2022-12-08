@@ -50,7 +50,7 @@
 
     <TextView
         android:id="@+id/tv_reviewer_content"
-        style="@style/text_12_light_gray"
+        style="@style/text_12_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -72,7 +72,7 @@
 
     <TextView
         android:id="@+id/tv_date_content"
-        style="@style/text_12_light_gray"
+        style="@style/text_12_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"

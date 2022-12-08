@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/tv_reviewer_content"
-            style="@style/text_12_light_gray"
+            style="@style/text_12_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -75,7 +75,7 @@
 
         <TextView
             android:id="@+id/tv_comment"
-            style="@style/text_12_light_gray"
+            style="@style/text_12_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
