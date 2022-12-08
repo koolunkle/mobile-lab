@@ -39,7 +39,7 @@ class Decoration() : RecyclerView.ItemDecoration() {
         val widthMargin = 20f
         val height = 2f
         val paint = Paint()
-        val left = (parent.paddingStart)+130.toFloat()
+        val left = parent.paddingStart.toFloat()
         val right = (parent.width - parent.paddingEnd).toFloat()
         paint.color = Color.parseColor("#727272")
 
