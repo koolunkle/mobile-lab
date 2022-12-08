@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.databinding.AdapterReviewBinding
 import kr.or.mrhi.cinemastorage.view.activity.review.ReviewDetailActivity
@@ -16,6 +17,14 @@ class ReviewAdapter(private val reviewList: ArrayList<Review>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Review) {
+            val userDAO = UserDAO()
+            val reviewKey = data.key
+            val imageReference = userDAO.storage?.reference?.child("images/${reviewKey}.jpg")
+
+            imageReference?.downloadUrl?.addOnCompleteListener {
+                if (it.isSuccessful) Glide.with(itemView).load(it.result).into(binding.ivProfile)
+            }
+
             binding.tvReviewerContent.text = data.reviewer
             binding.tvTitle.text = data.title
             binding.tvDate.text = data.date
