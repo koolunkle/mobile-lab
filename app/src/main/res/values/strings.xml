@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CinemaStorage</string>
+    <string name="app_name">Cinema\nStorage</string>
 
     <!-- Menu Bottom Navigation -->
     <string name="nav_list">List</string>
@@ -12,8 +12,8 @@
     <string name="description">EDIT PROFILE</string>
     <string name="require_a">Please enter your nickname without any spaces</string>
     <string name="require_b">Click image to change your profile</string>
-    <string name="save">SAVE</string>
-    <string name="cancle">CANCLE</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Activity Intro -->
     <string name="btn_login">Login</string>
