@@ -98,7 +98,7 @@
 
     <EditText
         android:id="@+id/et_title"
-        style="@style/text_12_lightgray"
+        style="@style/text_15_bold_lightgray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -108,6 +108,7 @@
         android:inputType="text"
         android:lines="1"
         android:maxLength="50"
+        android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
@@ -137,7 +138,7 @@
 
     <EditText
         android:id="@+id/et_comment"
-        style="@style/text_12_lightgray"
+        style="@style/text_15_bold_lightgray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -147,6 +148,7 @@
         android:inputType="textMultiLine"
         android:lines="2"
         android:maxLength="50"
+        android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_comment" />
