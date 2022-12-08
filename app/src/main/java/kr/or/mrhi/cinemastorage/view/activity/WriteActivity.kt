@@ -108,12 +108,12 @@ class WriteActivity : AppCompatActivity() {
                 backdropPath
             )
             if (title.isBlank() || comment.isBlank()) {
-                setToast("Please enter your title, image and comment at all")
+                setToast("Please enter your review title and comment")
                 return@setOnClickListener
             } else {
                 reviewDAO.databaseReference?.child(date)?.setValue(review)?.apply {
-                    addOnSuccessListener { setToast("Success to insert data") }
-                    addOnFailureListener { setToast("Failed to insert data") }
+                    addOnSuccessListener { setToast("Succeed to upload review") }
+                    addOnFailureListener { setToast("Failed to upload review") }
                 }
             }
         }

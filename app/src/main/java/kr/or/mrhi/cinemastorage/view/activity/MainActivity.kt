@@ -3,7 +3,6 @@ package kr.or.mrhi.cinemastorage.view.activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
@@ -37,9 +36,9 @@ class MainActivity : AppCompatActivity() {
 
     private var loginUser: User? = null
 
-    private lateinit var globalReview: Review
-
     private var isUser = false
+
+    private lateinit var globalReview: Review
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_profile_update -> startActivity(
                     Intent(this, UpdateUserinfoActivity::class.java)
                 )
-                R.id.nav_logout -> logout()
+                R.id.nav_logout -> setLogout()
                 R.id.nav_delete_account -> deleteAccountAlertDialog()
             }
             true
@@ -103,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
     /*로그아웃시 sharedpreferences에 저장된 값을 지우고 인트로 페이지로 이동하면서
     * 유저가 앱을 사용하면서 쌓인 인텐트를 정리함*/
-    private fun logout() {
+    private fun setLogout() {
         SharedPreferences.removeToken(applicationContext)
         val intent = Intent(this, IntroActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -118,11 +117,9 @@ class MainActivity : AppCompatActivity() {
                 DialogInterface.BUTTON_NEGATIVE -> dialogInterface.dismiss()
             }
         }
-        val builder = AlertDialog.Builder(this)
-            .setTitle("DELETE ACCOUNT")
+        val builder = AlertDialog.Builder(this).setTitle("DELETE ACCOUNT")
             .setMessage("Are you sure you want to delete your current account?")
-            .setPositiveButton("YES", listener)
-            .setNegativeButton("NO", listener)
+            .setPositiveButton("YES", listener).setNegativeButton("NO", listener)
         builder.show()
     }
 
@@ -145,10 +142,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("MainActivity", "failed delete data of the account")
+                setToast(error.message)
             }
         })
-        logout()
+        setLogout()
     }
 
     /*drawerlayout 설정, 툴바의 아이콘을 클릭해도 열리도록 함 */
@@ -198,11 +195,13 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val drawerLayout = binding.drawerLayout
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START)
-        else if (System.currentTimeMillis() - backPressedTime >= 1500) {
+        else setExitProcess()
+    }
+
+    private fun setExitProcess() {
+        if (System.currentTimeMillis() - backPressedTime >= 1500) {
             backPressedTime = System.currentTimeMillis()
-            Toast.makeText(
-                this, resources.getString(R.string.toast_back_pressed), Toast.LENGTH_SHORT
-            ).show()
+            setToast(resources.getString(R.string.toast_back_pressed))
         } else {
             ActivityCompat.finishAffinity(this)
             System.runFinalization()

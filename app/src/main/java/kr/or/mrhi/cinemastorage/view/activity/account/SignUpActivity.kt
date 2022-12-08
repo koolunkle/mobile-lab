@@ -46,7 +46,7 @@ class SignUpActivity : AppCompatActivity() {
 
             /*프로필이미지, 닉네임, 비밀번호 전부 입력해야 버튼이벤트가 실행되도록 방어*/
             if (filePath.isNullOrBlank() || nickname.isBlank() || password.isBlank()) {
-                setToast("Please enter your profile picture, nickname and password at all")
+                setToast("Please enter your profile, nickname and password at all")
                 return@setOnClickListener
             } else {
                 /* firebase의 realtimeDB의 데이터들을 향상된 포문으로
@@ -71,11 +71,11 @@ class SignUpActivity : AppCompatActivity() {
                             addOnSuccessListener {
                                 userDAO.databaseReference?.child(userKey.toString())?.setValue(user)
                                     .apply {
-                                        addOnSuccessListener { setToast("Success to insert data") }
-                                        addOnFailureListener { setToast("Failed to insert data") }
+                                        addOnSuccessListener { setToast("Success to upload user info") }
+                                        addOnFailureListener { setToast("Failed to upload user info") }
                                     }
                             }
-                            addOnFailureListener { setToast("Failed to insert data") }
+                            addOnFailureListener { setToast("Failed to upload user profile") }
                         }
                     }
 
