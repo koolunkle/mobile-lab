@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/tv_review"
-            style="@style/text_25_bold_808080"
+            style="@style/text_25_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_my_review"
@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/tv_review_count"
-            style="@style/text_12_808080"
+            style="@style/text_12_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_review_count"
