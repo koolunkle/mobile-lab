@@ -18,7 +18,7 @@
 
         <meta-data
             android:name="kr.or.mrhi.cinemastorage.API_KEY"
-            android:value="app.BuildConfig.API_KEY" />
+            android:value="${tmdb_api_key}" />
 
         <activity
             android:name=".view.activity.user.UpdateUserinfoActivity"

@@ -7,6 +7,8 @@ plugins {
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
+def tmdbApiKey = properties.getProperty('tmdb_api_key')
+
 android {
     namespace 'kr.or.mrhi.cinemastorage'
     compileSdk 32
@@ -20,9 +22,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-        buildConfigField "String","POPULAR_KEY", properties["movie_popular_api_key"]
-        buildConfigField "String","TOP_RATE_KEY", properties["movie_top_rated_api_key"]
-        buildConfigField "String","UPCOMING_KEY", properties["movie_upcoming_api_key"]
+
+        buildConfigField "String", "TMDB_API_KEY", properties['tmdb_api_key']
+        manifestPlaceholders = [tmdb_api_key: tmdbApiKey]
     }
 
     buildTypes {
