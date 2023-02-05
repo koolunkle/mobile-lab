@@ -55,8 +55,8 @@
     <string name="btn_review">Create Review</string>
 
     <!-- Activity Personal -->
-    <string name="tv_my_review">MY PAGE</string>
-    <string name="tv_review_count">until now written review :</string>
+    <string name="tv_my_review">My Page</string>
+    <string name="tv_review_count">Number of reviews :</string>
 
     <!-- Adapter Review / Personal -->
     <string name="user_reviewer_comment">쿵푸팬더</string>
@@ -65,16 +65,13 @@
     <string name="user_review_comment">출생의 비밀이라는 식상한 소재가 등장하지만 역동적인 무협 장면들에 속이 시원해진다.</string>
 
     <!-- Menu Drawer Navigation -->
-    <string name="item_my_review">MY PAGE</string>
-    <string name="item_profile_update">UPDATE PROFILE</string>
-    <string name="item_nav_logout">LOGOUT</string>
-    <string name="item_delete_account">DELETE ACCOUNT</string>
+    <string name="item_my_page">My Page</string>
+    <string name="item_edit_profile">Edit Profile</string>
+    <string name="item_logout">Logout</string>
+    <string name="item_delete_account">Delete Account</string>
 
     <!-- Drawer Header -->
     <string name="txt_nickname">Nickname</string>
-
-    <!-- Menu Review Search -->
-    <string name="menu_search">search</string>
 
     <!-- Activity Main -->
     <string name="drawer_open">Drawer Open</string>
