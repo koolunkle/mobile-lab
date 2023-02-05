@@ -7,10 +7,8 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-/*Using itemdecoration is lighter than applying the effect to each item in the xml file.*/
-class Decoration() : RecyclerView.ItemDecoration() {
+class Decoration : RecyclerView.ItemDecoration() {
 
-    /*Set spacing between items in RecyclerView*/
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -23,17 +21,20 @@ class Decoration() : RecyclerView.ItemDecoration() {
         val count = state.itemCount
         val offset = 30
 
-        if (position == 0) {
-            outRect.top = offset
-        } else if (position == count - 1) {
-            outRect.bottom = offset
-        } else {
-            outRect.top = offset
-            outRect.bottom = offset
+        when (position) {
+            0 -> {
+                outRect.top = offset
+            }
+            count - 1 -> {
+                outRect.bottom = offset
+            }
+            else -> {
+                outRect.top = offset
+                outRect.bottom = offset
+            }
         }
     }
 
-    /*Add a separator line between items*/
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
         val widthMargin = 20f
@@ -45,10 +46,11 @@ class Decoration() : RecyclerView.ItemDecoration() {
 
         for (i in 0 until parent.childCount) {
             val view = parent.getChildAt(i)
-            val layouParams = view.layoutParams as RecyclerView.LayoutParams
-            val top = view.bottom.toFloat() + layouParams.bottomMargin
+            val layoutParams = view.layoutParams as RecyclerView.LayoutParams
+            val top = view.bottom.toFloat() + layoutParams.bottomMargin
             val bottom = top + height
             c.drawRect(left + widthMargin, top, right - widthMargin, bottom, paint)
         }
     }
+
 }
