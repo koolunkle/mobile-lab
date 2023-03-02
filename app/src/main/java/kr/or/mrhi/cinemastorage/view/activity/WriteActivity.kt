@@ -8,6 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kr.or.mrhi.cinemastorage.BuildConfig
 import kr.or.mrhi.cinemastorage.dao.ReviewDAO
 import kr.or.mrhi.cinemastorage.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.Review
@@ -74,14 +75,14 @@ class WriteActivity : AppCompatActivity() {
     private fun setCinemaInfo() {
         val extras = intent.extras
         extras?.getString(MOVIE_BACKDROP)?.let { backdrop ->
-            Glide.with(this).load("https://image.tmdb.org/t/p/w1280$backdrop")
-                .transform(CenterCrop()).into(binding.ivBackdrop)
-            backdropPath = "https://image.tmdb.org/t/p/w1280$backdrop"
+            Glide.with(this).load(BuildConfig.TMDB_BACKDROP_URL + backdrop).transform(CenterCrop())
+                .into(binding.ivBackdrop)
+            backdropPath = BuildConfig.TMDB_BACKDROP_URL + backdrop
         }
         extras?.getString(MOVIE_POSTER)?.let { poster ->
-            Glide.with(this).load("https://image.tmdb.org/t/p/w342$poster").transform(CenterCrop())
+            Glide.with(this).load(BuildConfig.TMDB_POSTER_URL + poster).transform(CenterCrop())
                 .into(binding.ivPoster)
-            posterPath = "https://image.tmdb.org/t/p/w342$poster"
+            posterPath = BuildConfig.TMDB_POSTER_URL + poster
         }
         binding.tvCinemaTitle.text = extras?.getString(MOVIE_TITLE, "")
         binding.tvReleaseDate.text = extras?.getString(MOVIE_RELEASE_DATE, "")

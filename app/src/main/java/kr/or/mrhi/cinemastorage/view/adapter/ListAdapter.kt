@@ -29,7 +29,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(cinema: Cinema) {
-            Glide.with(itemView.context).load(BuildConfig.TMDB_IMG_URL + cinema.poster)
+            Glide.with(itemView.context).load(BuildConfig.TMDB_POSTER_URL + cinema.poster)
                 .into(binding.ivPoster)
 
             binding.root.setOnClickListener {

@@ -18,7 +18,8 @@ android {
         versionName "1.0"
 
         buildConfigField("String", "TMDB_API_KEY", TMDB_KEY)
-        buildConfigField("String", "TMDB_IMG_URL", TMDB_IMG)
+        buildConfigField("String", "TMDB_POSTER_URL", TMDB_POSTER)
+        buildConfigField("String", "TMDB_BACKDROP_URL", TMDB_BACKDROP)
         buildConfigField("String", "MAIN_VIDEO", SAMPLE_VIDEO)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

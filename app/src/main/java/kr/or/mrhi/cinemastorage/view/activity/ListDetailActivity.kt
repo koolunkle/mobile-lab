@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import kr.or.mrhi.cinemastorage.BuildConfig
 import kr.or.mrhi.cinemastorage.databinding.ActivityListDetailBinding
 
 class ListDetailActivity : AppCompatActivity() {
@@ -43,11 +44,11 @@ class ListDetailActivity : AppCompatActivity() {
 
     private fun setCinemaDetail(extras: Bundle) {
         extras.getString(MOVIE_BACKDROP)?.let { backdrop ->
-            Glide.with(this).load("https://image.tmdb.org/t/p/w1280$backdrop")
-                .transform(CenterCrop()).into(binding.ivBackdrop)
+            Glide.with(this).load(BuildConfig.TMDB_BACKDROP_URL + backdrop).transform(CenterCrop())
+                .into(binding.ivBackdrop)
         }
         extras.getString(MOVIE_POSTER)?.let { poster ->
-            Glide.with(this).load("https://image.tmdb.org/t/p/w342$poster").transform(CenterCrop())
+            Glide.with(this).load(BuildConfig.TMDB_POSTER_URL + poster).transform(CenterCrop())
                 .into(binding.ivPoster)
         }
         binding.tvTitle.text = extras.getString(MOVIE_TITLE, "")
