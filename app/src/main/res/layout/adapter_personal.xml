@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/black"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:backgroundTint="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/tv_date"
-            style="@style/text_12_808080"
+            style="@style/text_12_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"

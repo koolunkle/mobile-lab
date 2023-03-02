@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/tv_reviewer"
-        style="@style/text_18_middlegray"
+        style="@style/text_18_lightgray"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
@@ -59,7 +59,7 @@
 
     <TextView
         android:id="@+id/tv_date"
-        style="@style/text_18_middlegray"
+        style="@style/text_18_lightgray"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
@@ -88,7 +88,7 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/text_25_bold_808080"
+        style="@style/text_25_bold_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -120,7 +120,7 @@
 
     <TextView
         android:id="@+id/tv_comment"
-        style="@style/text_25_bold_808080"
+        style="@style/text_25_bold_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

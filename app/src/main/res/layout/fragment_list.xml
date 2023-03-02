@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/tv_popular_title"
-            style="@style/text_25_bold_808080"
+            style="@style/text_25_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_popular_title"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/tv_popular_subtitle"
-            style="@style/text_20_bold_808080"
+            style="@style/text_20_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_popular_subtitle"
@@ -48,7 +48,7 @@
             android:id="@+id/divider_popular"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/middle_gray"
+            android:background="@color/light_gray"
             app:layout_constraintBottom_toTopOf="@id/recyclerView_popular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_popular_subtitle" />
@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/tv_top_title"
-            style="@style/text_25_bold_808080"
+            style="@style/text_25_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -78,7 +78,7 @@
 
         <TextView
             android:id="@+id/tv_top_subtitle"
-            style="@style/text_20_bold_808080"
+            style="@style/text_20_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_top_subtitle"
@@ -90,7 +90,7 @@
             android:id="@+id/divider_top_rated"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/middle_gray"
+            android:background="@color/light_gray"
             app:layout_constraintBottom_toTopOf="@id/recyclerView_top_rated"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_top_subtitle" />
@@ -109,7 +109,7 @@
 
         <TextView
             android:id="@+id/tv_upcoming_title"
-            style="@style/text_25_bold_808080"
+            style="@style/text_25_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -120,7 +120,7 @@
 
         <TextView
             android:id="@+id/tv_upcoming_subtitle"
-            style="@style/text_20_bold_808080"
+            style="@style/text_20_bold_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_upcoming_subtitle"
@@ -132,7 +132,7 @@
             android:id="@+id/divider_upcoming"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/middle_gray"
+            android:background="@color/light_gray"
             app:layout_constraintBottom_toTopOf="@id/recyclerView_upcoming"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_upcoming_subtitle" />

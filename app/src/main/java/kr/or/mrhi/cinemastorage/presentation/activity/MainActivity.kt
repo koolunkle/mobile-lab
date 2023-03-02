@@ -21,9 +21,9 @@ import kr.or.mrhi.cinemastorage.data.dao.UserDAO
 import kr.or.mrhi.cinemastorage.data.model.Review
 import kr.or.mrhi.cinemastorage.data.model.User
 import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
-import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.presentation.activity.user.PersonalActivity
 import kr.or.mrhi.cinemastorage.presentation.activity.user.UpdateUserinfoActivity
+import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                         isUser = true
                     }
                 }
-                if (isUser) setNavigationHeaderView(loginUser?.nickname!!)
+                if (isUser) setNavigationHeaderView("Nickname : " + loginUser?.nickname!!)
             }
 
             override fun onCancelled(error: DatabaseError) {

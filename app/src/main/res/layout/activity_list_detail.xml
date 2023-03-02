@@ -62,7 +62,7 @@
 
         <TextView
             android:id="@+id/tv_release_date"
-            style="@style/text_12_808080"
+            style="@style/text_12_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@+id/tv_title"

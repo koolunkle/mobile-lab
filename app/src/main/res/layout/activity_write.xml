@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/tv_cinema_title"
-        style="@style/text_18_middlegray"
+        style="@style/text_18_lightgray"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
@@ -75,7 +75,7 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/text_25_bold_middlegray"
+        style="@style/text_25_bold_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -87,7 +87,7 @@
 
     <TextView
         android:id="@+id/tv_title_limit"
-        style="@style/text_12_808080"
+        style="@style/text_12_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -108,14 +108,14 @@
         android:inputType="text"
         android:lines="1"
         android:maxLength="50"
-        android:textColorHint="#808080"
+        android:textColorHint="@color/light_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <TextView
         android:id="@+id/tv_comment"
-        style="@style/text_25_bold_middlegray"
+        style="@style/text_25_bold_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -127,7 +127,7 @@
 
     <TextView
         android:id="@+id/tv_comment_limit"
-        style="@style/text_12_808080"
+        style="@style/text_12_lightgray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -148,7 +148,7 @@
         android:inputType="textMultiLine"
         android:lines="2"
         android:maxLength="50"
-        android:textColorHint="#808080"
+        android:textColorHint="@color/light_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_comment" />

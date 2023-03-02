@@ -17,15 +17,15 @@
 
         <TextView
             android:id="@+id/tv"
-            style="@style/text_12_808080"
+            style="@style/text_12_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="3dp"
+            android:text="@string/tv_reviewer"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="3dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/tv_reviewer"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_reviewer_content"
@@ -88,7 +88,7 @@
 
         <TextView
             android:id="@+id/tv_date"
-            style="@style/text_12_808080"
+            style="@style/text_12_lightgray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
