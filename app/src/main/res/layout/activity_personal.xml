@@ -7,7 +7,7 @@
     android:background="@color/black"
     android:orientation="vertical"
     android:padding="6dp"
-    tools:context=".view.activity.user.PersonalActivity">
+    tools:context=".presentation.activity.user.PersonalActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

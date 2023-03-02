@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/almost_black"
-    tools:context=".view.activity.WriteActivity">
+    tools:context=".presentation.activity.WriteActivity">
 
     <ImageView
         android:id="@+id/iv_backdrop"

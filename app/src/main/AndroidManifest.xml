@@ -19,63 +19,63 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".view.activity.user.UpdateUserinfoActivity"
+            android:name=".presentation.activity.user.UpdateUserinfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.review.PersonalDetailActivity"
+            android:name=".presentation.activity.review.PersonalDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.review.ReviewDetailActivity"
+            android:name=".presentation.activity.review.ReviewDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.WriteActivity"
+            android:name=".presentation.activity.WriteActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.user.PersonalActivity"
+            android:name=".presentation.activity.user.PersonalActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.ListDetailActivity"
+            android:name=".presentation.activity.ListDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.account.SignUpActivity"
+            android:name=".presentation.activity.account.SignUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.account.LoginActivity"
+            android:name=".presentation.activity.account.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.IntroActivity"
+            android:name=".presentation.activity.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -88,7 +88,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name=".presentation.activity.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false">
             <meta-data

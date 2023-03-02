@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:padding="20dp"
-    tools:context=".view.activity.user.UpdateUserinfoActivity">
+    tools:context=".presentation.activity.user.UpdateUserinfoActivity">
 
     <TextView
         android:id="@+id/tv_profile_info"
