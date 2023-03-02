@@ -90,13 +90,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.activity.SplashActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".view.activity.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false">
