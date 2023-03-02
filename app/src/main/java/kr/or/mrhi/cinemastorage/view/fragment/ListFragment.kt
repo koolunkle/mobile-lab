@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.data.cinema.Cinema
 import kr.or.mrhi.cinemastorage.data.cinema.CinemaRepository
 import kr.or.mrhi.cinemastorage.databinding.FragmentListBinding
@@ -39,9 +40,13 @@ class ListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentListBinding.inflate(inflater, container, false)
+    ): View? {
+        return inflater.inflate(R.layout.fragment_list, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentListBinding.bind(view)
         binding.apply {
             getPopularCinema()
             getTopRatedCinema()
@@ -51,7 +56,6 @@ class ListFragment : Fragment() {
             setRecyclerView(recyclerViewUpcoming, upcomingAdapter)
             setVideoView()
         }
-        return binding.root
     }
 
     private fun showCinemaDetail(cinema: Cinema) {

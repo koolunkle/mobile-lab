@@ -10,7 +10,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
-import androidx.viewpager2.widget.ViewPager2
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -23,7 +24,6 @@ import kr.or.mrhi.cinemastorage.databinding.ActivityMainBinding
 import kr.or.mrhi.cinemastorage.util.SharedPreferences
 import kr.or.mrhi.cinemastorage.view.activity.user.PersonalActivity
 import kr.or.mrhi.cinemastorage.view.activity.user.UpdateUserinfoActivity
-import kr.or.mrhi.cinemastorage.view.adapter.MainAdapter
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
@@ -46,8 +46,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            setViewPager()
-            setBottomNavigationSelected()
+            setNavigationFragment()
             setDrawerLayout()
             setDrawerNavigationSelected()
             getUserNickname()
@@ -158,31 +157,11 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setViewPager() {
-        binding.viewpager.apply {
-            adapter = MainAdapter(this@MainActivity)
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    binding.bottomNavigation.menu.getItem(position).isChecked = true
-                }
-            })
-        }
-    }
-
-    private fun setBottomNavigationSelected() {
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_list -> {
-                    binding.viewpager.currentItem = LIST_FRAGMENT
-                    true
-                }
-                else -> {
-                    binding.viewpager.currentItem = REVIEW_FRAGMENT
-                    true
-                }
-            }
-        }
+    private fun setNavigationFragment() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.bottomNavigation.setupWithNavController(navController)
     }
 
     override fun onBackPressed() {
@@ -204,11 +183,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setToast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
-
-    companion object {
-        const val LIST_FRAGMENT = 0
-        const val REVIEW_FRAGMENT = 1
     }
 
 }

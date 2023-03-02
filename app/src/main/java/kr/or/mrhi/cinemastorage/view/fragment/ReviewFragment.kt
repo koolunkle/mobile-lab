@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.dao.ReviewDAO
 import kr.or.mrhi.cinemastorage.data.Review
 import kr.or.mrhi.cinemastorage.databinding.FragmentReviewBinding
@@ -24,14 +25,17 @@ class ReviewFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentReviewBinding.inflate(inflater, container, false)
+    ): View? {
+        return inflater.inflate(R.layout.fragment_review, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentReviewBinding.bind(view)
         binding.apply {
             getReviewList()
             setRecyclerView()
         }
-        return binding.root
     }
 
     private fun getReviewList() {
