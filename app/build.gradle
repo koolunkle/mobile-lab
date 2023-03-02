@@ -5,10 +5,6 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
 }
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-def tmdbApiKey = properties.getProperty('tmdb_api_key')
 
 android {
     namespace 'kr.or.mrhi.cinemastorage'
@@ -21,16 +17,18 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String", "TMDB_API_KEY", TMDB_KEY)
+        buildConfigField("String", "TMDB_IMG_URL", TMDB_IMG)
+        buildConfigField("String", "MAIN_VIDEO", SAMPLE_VIDEO)
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-
-        buildConfigField "String", "TMDB_API_KEY", properties['tmdb_api_key']
-        manifestPlaceholders = [tmdb_api_key: tmdbApiKey]
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

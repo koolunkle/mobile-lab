@@ -49,9 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/middle_gray"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_popular"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_popular_subtitle"
-            app:layout_constraintBottom_toTopOf="@id/recyclerView_popular"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_popular_subtitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_popular"
@@ -91,9 +91,9 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/middle_gray"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_top_rated"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_top_subtitle"
-            app:layout_constraintBottom_toTopOf="@id/recyclerView_top_rated"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_top_subtitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_top_rated"
@@ -133,9 +133,9 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/middle_gray"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_upcoming"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_upcoming_subtitle"
-            app:layout_constraintBottom_toTopOf="@id/recyclerView_upcoming"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_upcoming_subtitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_upcoming"

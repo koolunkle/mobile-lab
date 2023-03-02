@@ -3,7 +3,6 @@ package kr.or.mrhi.cinemastorage.view.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kr.or.mrhi.cinemastorage.BuildConfig
 import kr.or.mrhi.cinemastorage.R
 import kr.or.mrhi.cinemastorage.data.cinema.Cinema
 import kr.or.mrhi.cinemastorage.data.cinema.CinemaRepository
@@ -28,13 +28,11 @@ class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
 
-    private val cinemaList = listOf<Cinema>()
+    private val popularAdapter = ListAdapter()
 
-    private val popularAdapter = ListAdapter(cinemaList) { cinema -> showCinemaDetail(cinema) }
+    private val topRatedAdapter = ListAdapter()
 
-    private val topRatedAdapter = ListAdapter(cinemaList) { cinema -> showCinemaDetail(cinema) }
-
-    private val upcomingAdapter = ListAdapter(cinemaList) { cinema -> showCinemaDetail(cinema) }
+    private val upcomingAdapter = ListAdapter()
 
     private var position = 0
 
@@ -54,19 +52,24 @@ class ListFragment : Fragment() {
             setRecyclerView(recyclerViewPopular, popularAdapter)
             setRecyclerView(recyclerViewTopRated, topRatedAdapter)
             setRecyclerView(recyclerViewUpcoming, upcomingAdapter)
+            showCinemaDetail(popularAdapter)
+            showCinemaDetail(topRatedAdapter)
+            showCinemaDetail(upcomingAdapter)
             setVideoView()
         }
     }
 
-    private fun showCinemaDetail(cinema: Cinema) {
-        val intent = Intent(requireContext(), ListDetailActivity::class.java)
-        intent.putExtra(MOVIE_BACKDROP, cinema.backdrop)
-        intent.putExtra(MOVIE_POSTER, cinema.poster)
-        intent.putExtra(MOVIE_TITLE, cinema.title)
-        intent.putExtra(MOVIE_RELEASE_DATE, cinema.release)
-        intent.putExtra(MOVIE_RATING, cinema.rating)
-        intent.putExtra(MOVIE_OVERVIEW, cinema.overview)
-        startActivity(intent)
+    private fun showCinemaDetail(listAdapter: ListAdapter) {
+        listAdapter.setOnItemClickListener {
+            val intent = Intent(activity, ListDetailActivity::class.java)
+            intent.putExtra(MOVIE_BACKDROP, it.backdrop)
+            intent.putExtra(MOVIE_POSTER, it.poster)
+            intent.putExtra(MOVIE_TITLE, it.title)
+            intent.putExtra(MOVIE_RELEASE_DATE, it.release)
+            intent.putExtra(MOVIE_RATING, it.rating)
+            intent.putExtra(MOVIE_OVERVIEW, it.overview)
+            startActivity(intent)
+        }
     }
 
     private fun getPopularCinema() {
@@ -74,8 +77,7 @@ class ListFragment : Fragment() {
     }
 
     private fun onPopularCinemaFetched(cinema: List<Cinema>) {
-        popularAdapter.updateCinema(cinema)
-        Log.d("ListFragment", "Cinema : $cinema")
+        popularAdapter.differ.submitList(cinema)
     }
 
     private fun getTopRatedCinema() {
@@ -85,8 +87,7 @@ class ListFragment : Fragment() {
     }
 
     private fun onTopRatedCinemaFetched(cinema: List<Cinema>) {
-        topRatedAdapter.updateCinema(cinema)
-        Log.d("ListFragment", "Cinema : $cinema")
+        topRatedAdapter.differ.submitList(cinema)
     }
 
     private fun getUpcomingCinema() {
@@ -96,19 +97,18 @@ class ListFragment : Fragment() {
     }
 
     private fun onUpcomingCinemaFetched(cinema: List<Cinema>) {
-        upcomingAdapter.updateCinema(cinema)
-        Log.d("ListFragment", "Cinema : $cinema")
+        upcomingAdapter.differ.submitList(cinema)
     }
 
     private fun onError() {
         Toast.makeText(
-            requireContext(), "Please check your internet connection", Toast.LENGTH_SHORT
+            activity, "Please check your internet connection", Toast.LENGTH_SHORT
         ).show()
     }
 
     private fun setVideoView() {
         binding.videoView.apply {
-            setVideoURI(Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"))
+            setVideoURI(Uri.parse(BuildConfig.MAIN_VIDEO))
             requestFocus()
             setOnPreparedListener { start() }
             setOnCompletionListener { start() }
@@ -118,8 +118,7 @@ class ListFragment : Fragment() {
     private fun setRecyclerView(recyclerView: RecyclerView, listAdapter: ListAdapter) {
         recyclerView.apply {
             adapter = listAdapter
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
         }
     }
