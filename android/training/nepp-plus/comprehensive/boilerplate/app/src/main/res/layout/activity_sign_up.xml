@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".SignUpActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일 주소" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="이메일 주소"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:id="@+id/btnEmailCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중복확인" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtEmailCheckResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일 중복검사를 해주세요." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="비밀번호" />
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호 8자리 이상"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/txtPasswordCheckResult1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8자리 이상이어야 합니다." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="비밀번호 확인" />
+
+        <EditText
+            android:id="@+id/edtPasswordRepeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호를 다시 입력해주세요."
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/txtPasswordCheckResult2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호가 서로 일치해야합니다." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="닉네임" />
+
+        <EditText
+            android:id="@+id/edtNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="한글 입력 가능"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원가입" />
+
+    </LinearLayout>
+
+</layout>
