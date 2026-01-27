@@ -1,0 +1,7 @@
+# IDE Configurations
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+.DS_Store
+build/
