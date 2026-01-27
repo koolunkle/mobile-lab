@@ -1,0 +1,18 @@
+{
+    "settings": "설정",
+    "login": "로그인",
+    "profile": "프로필",
+    "home_dashboard": "대시보드",
+    "home_overview": "개요",
+    "overview_add_collection": "컬렉션 추가",
+    "collection_title": "컬렉션 추가",
+    "collection_title_label": "제목",
+    "collection_color_label": "색상",
+    "collection_save": "저장",
+    "detail_title": "컬렉션 상세",
+    "detail_add_todo": "ToDo 추가",
+    "todo_title": "ToDo 추가",
+    "todo_description_label": "내용",
+    "todo_save": "저장",
+    "collection_color_failure": "0과 ${numbers} 사이의 값을 입력해 주세요"
+}
