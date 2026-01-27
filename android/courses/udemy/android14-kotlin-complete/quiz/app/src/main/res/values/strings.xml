@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+
+    <string name="txt_quiz_app">Quiz App!</string>
+    <string name="txt_welcome">Welcome</string>
+    <string name="txt_enter_name">Please enter your name.</string>
+    <string name="txt_example_given_name">e.g. Koolunkle</string>
+    <string name="txt_start">Start</string>
+    <string name="txt_question">What Country does this flag belong to?</string>
+    <string name="iv_flag">Flag Image</string>
+    <string name="btn_submit">Submit</string>
+    <string name="tv_progress">%d / %d</string>
+    <string name="txt_submit">Submit</string>
+    <string name="txt_finish">Finish</string>
+    <string name="txt_next_question">GO TO NEXT QUESTION</string>
+    <string name="txt_result">Result</string>
+    <string name="iv_trophy">Trophy Image</string>
+    <string name="txt_congratulation">Hey, Congratulations!</string>
+    <string name="txt_score">Your score is %d out of %d</string>
+</resources>
