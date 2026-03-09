@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    android:padding="6dp"
+    tools:context=".presentation.activity.user.PersonalActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/box_under_personal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_review"
+            style="@style/text_25_bold_lightgray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_my_review"
+            app:layout_constraintBottom_toTopOf="@id/tv_nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            style="@style/text_30_bold_lightgray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_review_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_review"
+            tools:text="@string/tv_nickname" />
+
+        <TextView
+            android:id="@+id/tv_review_count"
+            style="@style/text_12_lightgray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_review_count"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nickname" />
+
+        <TextView
+            android:id="@+id/tv_review_count_no"
+            style="@style/text_15_bold_lightgray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_review_count"
+            app:layout_constraintStart_toEndOf="@id/tv_review_count"
+            app:layout_constraintTop_toTopOf="@id/tv_review_count" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_launcher"
+            app:civ_border_color="@color/light_gray"
+            app:civ_border_overlay="true"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

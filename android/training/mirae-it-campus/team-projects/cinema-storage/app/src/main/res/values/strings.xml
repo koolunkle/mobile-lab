@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name">Cinema\nStorage</string>
+
+    <!-- Menu Bottom Navigation -->
+    <string name="nav_list">List</string>
+    <string name="nav_review">Review</string>
+
+    <!-- Back Button -->
+    <string name="toast_back_pressed">Press the Back button once more to exit</string>
+
+    <!-- Activity User Info Update -->
+    <string name="description">EDIT PROFILE</string>
+    <string name="require_a">Please enter your nickname without any spaces</string>
+    <string name="require_b">Click image to change your profile</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Activity Intro -->
+    <string name="btn_login">Login</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="btn_later">See you later</string>
+
+    <string name="dialog_title">Exit</string>
+    <string name="dialog_message">Are you sure you want to exit?</string>
+    <string name="dialog_positive">Confirm</string>
+    <string name="dialog_negative">Cancel</string>
+
+    <!-- Activity Login -->
+    <string name="tv_login">Login</string>
+
+    <!-- Activity SignUp / Login -->
+    <string name="tv_title">Getting ready to be\nwith you</string>
+    <string name="txt_title">Hope that we can be\ntogether soon</string>
+
+    <string name="txt_profile">Click circle to upload your profile</string>
+    <string name="tv_nickname">Nickname</string>
+    <string name="tv_password">Password</string>
+
+    <string name="et_nickname">Input Nickname</string>
+    <string name="edt_password">Input Password</string>
+
+    <string name="btn_signup">Sign Up</string>
+    <string name="bttn_login">Login</string>
+
+    <!-- Fragment List / Activity List Detail -->
+    <string name="tv_popular_title">Popular</string>
+    <string name="tv_popular_subtitle">Most popular cinema</string>
+
+    <string name="tv_top_title">Top Rated</string>
+    <string name="tv_top_subtitle">Highest rated cinema of all time</string>
+
+    <string name="tv_upcoming_title">Upcoming</string>
+    <string name="tv_upcoming_subtitle">Stayed updated with the latest cinema</string>
+
+    <string name="btn_review">Create Review</string>
+
+    <!-- Activity Personal -->
+    <string name="tv_my_review">My Page</string>
+    <string name="tv_review_count">Number of reviews :</string>
+
+    <!-- Adapter Review / Personal -->
+    <string name="user_reviewer_comment">쿵푸팬더</string>
+    <string name="user_review_title">쿵푸팬더2</string>
+    <string name="user_review_date">2022.12.05 00:00:00</string>
+    <string name="user_review_comment">출생의 비밀이라는 식상한 소재가 등장하지만 역동적인 무협 장면들에 속이 시원해진다.</string>
+
+    <!-- Menu Drawer Navigation -->
+    <string name="item_my_page">My Page</string>
+    <string name="item_edit_profile">Edit Profile</string>
+    <string name="item_logout">Logout</string>
+    <string name="item_delete_account">Delete Account</string>
+
+    <!-- Drawer Header -->
+    <string name="txt_nickname">Nickname</string>
+
+    <!-- Activity Main -->
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+
+    <!-- Activity Write -->
+    <string name="tv_write_title">Review Title</string>
+    <string name="tv_write_title_limit">글자 수 제한 50자</string>
+    <string name="tv_write_comment">Review Comment</string>
+    <string name="tv_write_comment_limit">글자 수 제한 50자</string>
+
+    <string name="et_write_title">Please create a review title</string>
+    <string name="et_write_comment">Please write a review</string>
+
+    <string name="btn_write_review">Submit</string>
+
+    <!-- Activity Review Detail / Personal Detail -->
+    <string name="tv_reviewer">Reviewer</string>
+    <string name="tv_review_date">Review Date</string>
+    <string name="tv_review_title">Review Title</string>
+    <string name="tv_review_comment">Review Comment</string>
+
+    <string name="btn_back">Back</string>
+</resources>
