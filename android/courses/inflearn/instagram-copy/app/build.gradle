@@ -8,6 +8,11 @@ plugins {
 android {
     compileSdk 31
 
+    Properties properties = new Properties()
+    if (project.rootProject.file('local.properties').exists()) {
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    }
+
     defaultConfig {
         applicationId "com.inflearn.instagramcopy"
         minSdk 23
@@ -17,6 +22,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        buildConfigField "String", "FCM_SERVER_KEY", properties.getProperty("FCM_SERVER_KEY")
     }
 
     buildTypes {
@@ -24,6 +31,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
