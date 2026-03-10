@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">InstagramCopy</string>
-    <string name="facebook_app_id">[SECRET_FB_ID_REMOVED]</string>
-    <string name="fb_login_protocol_scheme">fb[SECRET_FB_ID_REMOVED]</string>
-    <string name="com.twitter.sdk.android.CONSUMER_KEY">[SECRET_TWITTER_KEY_REMOVED]</string>
-    <string name="com.twitter.sdk.android.CONSUMER_SECRET">[SECRET_TWITTER_SECRET_REMOVED]</string>
+    <string name="facebook_app_id"></string>
+    <string name="fb_login_protocol_scheme"></string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY"></string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET"></string>
     <!-- Sign In -->
     <string name="email">Email</string>
     <string name="password">Password</string>

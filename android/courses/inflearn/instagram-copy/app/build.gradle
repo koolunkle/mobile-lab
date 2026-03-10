@@ -24,6 +24,16 @@ android {
         multiDexEnabled true
 
         buildConfigField "String", "FCM_SERVER_KEY", properties.getProperty("FCM_SERVER_KEY")
+        buildConfigField "String", "TWITTER_CONSUMER_KEY", properties.getProperty("TWITTER_CONSUMER_KEY")
+        buildConfigField "String", "TWITTER_CONSUMER_SECRET", properties.getProperty("TWITTER_CONSUMER_SECRET")
+
+        resValue "string", "com.twitter.sdk.android.CONSUMER_KEY", properties.getProperty("TWITTER_CONSUMER_KEY")
+        resValue "string", "com.twitter.sdk.android.CONSUMER_SECRET", properties.getProperty("TWITTER_CONSUMER_SECRET")
+
+        manifestPlaceholders = [
+            facebook_app_id: properties.getProperty("FACEBOOK_APP_ID"),
+            fb_login_protocol_scheme: "fb" + properties.getProperty("FACEBOOK_APP_ID")
+        ]
     }
 
     buildTypes {
